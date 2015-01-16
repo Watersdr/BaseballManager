@@ -22,6 +22,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TeamSelectActivity"
+            android:label="@string/title_activity_team_select" >
+        </activity>
+        <activity
+            android:name=".AddEditTeamActivity"
+            android:label="@string/title_activity_create_team" >
+        </activity>
+        <activity
+            android:name=".TeamPageActivity"
+            android:label="@string/title_activity_team_page" >
+        </activity>
+        <activity
+            android:name=".ScheduleActivity"
+            android:label="@string/title_activity_schedule" >
+        </activity>
+        <activity
+            android:name=".SeasonStatisticsActivity"
+            android:label="@string/title_activity_season_statistics" >
+        </activity>
+        <activity
+            android:name=".RosterActivity"
+            android:label="@string/title_activity_roster" >
+        </activity>
+        <activity
+            android:name=".AddEditPlayerActivity"
+            android:label="@string/title_activity_add_edit_player" >
+        </activity>
+        <activity
+            android:name=".EnterRecapActivity"
+            android:label="@string/title_activity_enter_recap" >
+        </activity>
+        <activity
+            android:name=".GameRecapActivity"
+            android:label="@string/title_activity_game_recap" >
+        </activity>
     </application>
 
 </manifest>
