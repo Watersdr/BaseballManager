@@ -1,16 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">BaseballManager</string>
+    <!-- Titles -->
+    <string name="app_name">Baseball Manager</string>
+    <string name="title_activity_team_select">Select Team</string>
+    <string name="title_activity_create_team">Edit Team</string>
+    <string name="title_activity_team_page">Team Page</string>
+    <string name="title_activity_schedule">Schedule</string>
+    <string name="title_activity_season_statistics">Season Statistics</string>
+    <string name="title_activity_roster">Roster</string>
+    <string name="title_activity_add_edit_player">Edit Player</string>
+    <string name="title_activity_enter_recap">Enter Game Recap</string>
+    <string name="title_activity_game_recap">Game Recap</string>
+    <string name="title_activity_lineup">Line-up</string>
+    <string name="title_activity_depth_chart">Depth-Chart</string>
+    <string name="title_activity_upcoming_games">Upcoming Games</string>
+    <string name="title_activity_previous_games">Previous Games</string>
+    <!-- Menu Options -->
     <string name="action_settings">Settings</string>
-    <string name="title_activity_team_select">TeamSelectActivity</string>
-    <string name="title_activity_create_team">CreateTeamActivity</string>
-    <string name="title_activity_team_page">TeamPageActivity</string>
-    <string name="title_activity_schedule">ScheduleActivity</string>
-    <string name="title_activity_season_statistics">SeasonStatisticsActivity</string>
-    <string name="title_activity_roster">RosterActivity</string>
-    <string name="title_activity_add_edit_player">AddEditPlayerActivity</string>
-    <string name="title_activity_enter_recap">EnterRecapActivity</string>
-    <string name="title_activity_game_recap">GameRecapActivity</string>
+    <!-- Positions -->
+    <string name="p">P</string>
+    <string name="c">C</string>
+    <string name="_1b">1B</string>
+    <string name="_2b">2B</string>
+    <string name="_3b">3B</string>
+    <string name="ss">SS</string>
+    <string name="lf">LF</string>
+    <string name="cf">CF</string>
+    <string name="rf">RF</string>
+    <!-- Other Strings -->
+    <string name="cubs">Cubs</string>
+    <string name="enter_first_name">Enter First Name</string>
+    <string name="enter_last_name">Enter Last Name</string>
+    <string name="enter_number">Enter Number</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="manage_team">Manage the %s</string>
+    <string name="number">Number</string>
+    <string name="positions">Positions</string>
+    <string name="roster">Roster</string>
+    <string name="save">Save</string>
+    <string name="schedule">Schedule</string>
+    <string name="season_statistics">Season Statistics</string>
+    <string name="select_team">Select Your Team</string>
+    <string name="team_name">Team Name</string>
+    <string name="team_logo">Team Logo</string>
+    <string name="upload_logo">Upload Logo</string>
+    <string name="welcome">Welcome to Baseball Manager</string>
 
 </resources>
