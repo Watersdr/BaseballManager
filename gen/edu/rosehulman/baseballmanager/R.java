@@ -25,7 +25,7 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080020;
+        public static final int action_settings=0x7f080021;
         public static final int away_team=0x7f08001a;
         public static final int away_team_batting_stats=0x7f08001b;
         public static final int away_team_pitching_stats=0x7f08001c;
@@ -41,19 +41,20 @@ public final class R {
         public static final int chk_p=0x7f080007;
         public static final int chk_rf=0x7f08000f;
         public static final int chk_ss=0x7f08000c;
+        public static final int defense_stats_list_view=0x7f080011;
         public static final int editText1=0x7f080001;
         public static final int editText2=0x7f080003;
         public static final int editText3=0x7f080005;
         public static final int game_score=0x7f080015;
-        public static final int gridView1=0x7f080011;
+        public static final int gridView1=0x7f08001d;
         public static final int home_team=0x7f080017;
         public static final int home_team_batting_stats=0x7f080018;
         public static final int home_team_pitching_stats=0x7f080019;
         public static final int imageView1=0x7f080012;
-        public static final int roster_button=0x7f08001f;
-        public static final int schedule_button=0x7f08001d;
+        public static final int roster_button=0x7f080020;
+        public static final int schedule_button=0x7f08001e;
         public static final int scrollView1=0x7f080014;
-        public static final int season_statistics_button=0x7f08001e;
+        public static final int season_statistics_button=0x7f08001f;
         public static final int textView1=0x7f080000;
         public static final int textView2=0x7f080002;
         public static final int textView3=0x7f080004;
