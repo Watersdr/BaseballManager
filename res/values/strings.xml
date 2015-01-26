@@ -51,5 +51,16 @@
     <string name="team_logo">Team Logo</string>
     <string name="upload_logo">Upload Logo</string>
     <string name="welcome">Welcome to Baseball Manager</string>
+    <string name="name_stub">Name</string>
+    <string name="ab">AB</string>
+    <string name="h">H</string>
+    <string name="k">K</string>
+    <string name="bb">BB</string>
+    <string name="avg">Avg</string>
+    <string name="e">E</string>
+    <string name="ip">IP</string>
+    <string name="r">R</string>
+    <string name="er">ER</string>
+    <string name="era">ERA</string>
 
 </resources>
