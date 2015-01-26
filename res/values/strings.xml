@@ -37,8 +37,10 @@
     <string name="enter_number">Enter Number</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="line_up">Line-up</string>
     <string name="manage_team">Manage the %s</string>
     <string name="number">Number</string>
+    <string name="pitching">Pitching</string>
     <string name="positions">Positions</string>
     <string name="roster">Roster</string>
     <string name="save">Save</string>
