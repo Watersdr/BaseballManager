@@ -1,34 +1,40 @@
 package edu.rosehulman.baseballmanager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 
 public class SeasonStatisticsActivity extends Activity {
 
+	/*
+	 * Code for tabs based on Android Tutorials for Beginners
+	 * http://www.learn-android-easily.com/2013/07/android-tabwidget-example.html
+	 */
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_season_statistics);
-	}
+		 super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_season_statistics);
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.season_statistics, menu);
-		return true;
-	}
+         // Create the TabHost that will contain the Tabs
+         TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+
+         TabSpec tab1 = tabHost.newTabSpec("Batting / Defense Statistics");
+         TabSpec tab2 = tabHost.newTabSpec("Pitching Statistics");
+
+        // Set the Tab name and Activity
+        // that will be opened when particular Tab will be selected
+         tab1.setIndicator("Batting / Defense Statistics");
+         tab1.setContent(new Intent(this, UpcomingGamesActivity.class));
+         
+         tab2.setIndicator("Pitching Statistics");
+         tab2.setContent(new Intent(this, PreviousGamesActivity.class));
+         
+         // Add the tabs  to the TabHost to display.
+         tabHost.addTab(tab1);
+         tabHost.addTab(tab2);
 	}
 }

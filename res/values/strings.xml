@@ -16,6 +16,8 @@
     <string name="title_activity_depth_chart">Depth-Chart</string>
     <string name="title_activity_upcoming_games">Upcoming Games</string>
     <string name="title_activity_previous_games">Previous Games</string>
+    <string name="title_activity_batting_defense_stats">Batting / Defense Statistics</string>
+    <string name="title_activity_pitching_stats">Pitching Statistics</string>
     <!-- Menu Options -->
     <string name="action_settings">Settings</string>
     <!-- Positions -->

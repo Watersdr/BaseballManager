@@ -74,6 +74,14 @@
             android:name=".PreviousGamesActivity"
             android:label="@string/title_activity_previous_games" >
         </activity>
+        <activity
+            android:name=".BattingDefenseStatsActivity"
+            android:label="@string/title_activity_batting_defense_stats" >
+        </activity>
+        <activity
+            android:name=".PitchingStatsActivity"
+            android:label="@string/title_activity_pitching_stats" >
+        </activity>
     </application>
 
 </manifest>
