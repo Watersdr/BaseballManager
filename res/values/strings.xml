@@ -31,6 +31,7 @@
     <string name="cf">CF</string>
     <string name="rf">RF</string>
     <!-- Other Strings -->
+    <string name="create_team">Create Team</string>
     <string name="cubs">Cubs</string>
     <string name="enter_first_name">Enter First Name</string>
     <string name="enter_last_name">Enter Last Name</string>

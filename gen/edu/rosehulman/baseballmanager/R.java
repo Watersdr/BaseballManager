@@ -11,7 +11,9 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int black=0x7f040001;
         public static final int gray=0x7f040000;
+        public static final int white=0x7f040002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -28,16 +30,18 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f09002f;
-        public static final int at_bats=0x7f090022;
-        public static final int away_team=0x7f09001a;
-        public static final int away_team_batting_stats=0x7f09001b;
-        public static final int away_team_pitching_stats=0x7f09001c;
-        public static final int batter_name=0x7f090021;
-        public static final int batting_average=0x7f090026;
-        public static final int box_score=0x7f090016;
+        public static final int action_settings=0x7f09003e;
+        public static final int at_bats=0x7f090031;
+        public static final int away_team=0x7f090023;
+        public static final int away_team_batting_stats=0x7f090024;
+        public static final int away_team_pitching_stats=0x7f090025;
+        public static final int batter_name=0x7f090030;
+        public static final int batting_average=0x7f090035;
+        public static final int box_score=0x7f09001f;
         public static final int button1=0x7f090010;
         public static final int button2=0x7f090013;
+        public static final int catcher_spinner=0x7f09001c;
+        public static final int center_field_spinner=0x7f090014;
         public static final int chk_1b=0x7f090009;
         public static final int chk_2b=0x7f09000a;
         public static final int chk_3b=0x7f09000b;
@@ -47,35 +51,48 @@ public final class R {
         public static final int chk_p=0x7f090007;
         public static final int chk_rf=0x7f09000f;
         public static final int chk_ss=0x7f09000c;
+        public static final int create_team_button=0x7f09002e;
         public static final int defense_stats_list_view=0x7f090011;
-        public static final int earned_runs=0x7f09002b;
+        public static final int earned_runs=0x7f09003a;
         public static final int editText1=0x7f090001;
         public static final int editText2=0x7f090003;
         public static final int editText3=0x7f090005;
-        public static final int era=0x7f09002e;
-        public static final int errors=0x7f090027;
-        public static final int game_score=0x7f090015;
-        public static final int hits=0x7f090023;
-        public static final int home_team=0x7f090017;
-        public static final int home_team_batting_stats=0x7f090018;
-        public static final int home_team_pitching_stats=0x7f090019;
+        public static final int era=0x7f09003d;
+        public static final int errors=0x7f090036;
+        public static final int first_base_spinner=0x7f09001b;
+        public static final int game_score=0x7f09001e;
+        public static final int hits=0x7f090032;
+        public static final int home_team=0x7f090020;
+        public static final int home_team_batting_stats=0x7f090021;
+        public static final int home_team_pitching_stats=0x7f090022;
         public static final int imageView1=0x7f090012;
-        public static final int innings_pitched=0x7f090029;
-        public static final int pitcher_name=0x7f090028;
-        public static final int pitching_stats_list_view=0x7f09001d;
-        public static final int roster_button=0x7f090020;
-        public static final int runs=0x7f09002a;
-        public static final int schedule_button=0x7f09001e;
-        public static final int scrollView1=0x7f090014;
-        public static final int season_statistics_button=0x7f09001f;
-        public static final int strike_outs_batter=0x7f090024;
-        public static final int strike_outs_pitcher=0x7f09002c;
+        public static final int innings_pitched=0x7f090038;
+        public static final int left_field_spinner=0x7f090015;
+        public static final int listView1=0x7f09002f;
+        public static final int listview=0x7f090026;
+        public static final int mainLayout=0x7f090027;
+        public static final int pitcher_name=0x7f090037;
+        public static final int pitcher_spinner=0x7f09001a;
+        public static final int pitching_stats_list_view=0x7f090028;
+        public static final int right_field_spinner=0x7f090016;
+        public static final int roster_button=0x7f09002b;
+        public static final int runs=0x7f090039;
+        public static final int schedule_button=0x7f090029;
+        public static final int scrollView1=0x7f09001d;
+        public static final int season_statistics_button=0x7f09002a;
+        public static final int second_base_spinner=0x7f090018;
+        public static final int select_team_text=0x7f09002d;
+        public static final int short_stop_spinner=0x7f090017;
+        public static final int strike_outs_batter=0x7f090033;
+        public static final int strike_outs_pitcher=0x7f09003b;
         public static final int textView1=0x7f090000;
         public static final int textView2=0x7f090002;
         public static final int textView3=0x7f090004;
         public static final int textView4=0x7f090006;
-        public static final int walks_batter=0x7f090025;
-        public static final int walks_pitcher=0x7f09002d;
+        public static final int third_base_spinner=0x7f090019;
+        public static final int walks_batter=0x7f090034;
+        public static final int walks_pitcher=0x7f09003c;
+        public static final int welcome_text=0x7f09002c;
     }
     public static final class layout {
         public static final int activity_add_edit_player=0x7f030000;
@@ -85,17 +102,19 @@ public final class R {
         public static final int activity_enter_recap=0x7f030004;
         public static final int activity_game_recap=0x7f030005;
         public static final int activity_lineup=0x7f030006;
-        public static final int activity_main=0x7f030007;
-        public static final int activity_pitching_stats=0x7f030008;
-        public static final int activity_previous_games=0x7f030009;
-        public static final int activity_roster=0x7f03000a;
-        public static final int activity_schedule=0x7f03000b;
-        public static final int activity_season_statistics=0x7f03000c;
-        public static final int activity_team_page=0x7f03000d;
-        public static final int activity_team_select=0x7f03000e;
-        public static final int activity_upcoming_games=0x7f03000f;
-        public static final int stat_view_batting_defense=0x7f030010;
-        public static final int stat_view_pitching=0x7f030011;
+        public static final int activity_list_view=0x7f030007;
+        public static final int activity_main=0x7f030008;
+        public static final int activity_pitching_stats=0x7f030009;
+        public static final int activity_previous_games=0x7f03000a;
+        public static final int activity_roster=0x7f03000b;
+        public static final int activity_schedule=0x7f03000c;
+        public static final int activity_season_statistics=0x7f03000d;
+        public static final int activity_team_page=0x7f03000e;
+        public static final int activity_team_select=0x7f03000f;
+        public static final int activity_upcoming_games=0x7f030010;
+        public static final int stat_view_batting_defense=0x7f030011;
+        public static final int stat_view_pitching=0x7f030012;
+        public static final int text_view=0x7f030013;
     }
     public static final class menu {
         public static final int add_edit_player=0x7f080000;
@@ -119,51 +138,52 @@ public final class R {
         public static final int _1b=0x7f060013;
         public static final int _2b=0x7f060014;
         public static final int _3b=0x7f060015;
-        public static final int ab=0x7f06002f;
+        public static final int ab=0x7f060030;
         /**  Menu Options 
          */
         public static final int action_settings=0x7f060010;
         /**  Titles 
          */
         public static final int app_name=0x7f060000;
-        public static final int avg=0x7f060033;
-        public static final int bb=0x7f060032;
+        public static final int avg=0x7f060034;
+        public static final int bb=0x7f060033;
         public static final int c=0x7f060012;
         public static final int cf=0x7f060018;
         /**  Other Strings 
          */
-        public static final int cubs=0x7f06001a;
-        public static final int e=0x7f060034;
-        public static final int enter_first_name=0x7f06001b;
-        public static final int enter_last_name=0x7f06001c;
-        public static final int enter_number=0x7f06001d;
-        public static final int er=0x7f060037;
-        public static final int era=0x7f060038;
-        public static final int first_name=0x7f06001e;
-        public static final int h=0x7f060030;
-        public static final int ip=0x7f060035;
-        public static final int k=0x7f060031;
-        public static final int last_name=0x7f06001f;
+        public static final int create_team=0x7f06001a;
+        public static final int cubs=0x7f06001b;
+        public static final int e=0x7f060035;
+        public static final int enter_first_name=0x7f06001c;
+        public static final int enter_last_name=0x7f06001d;
+        public static final int enter_number=0x7f06001e;
+        public static final int er=0x7f060038;
+        public static final int era=0x7f060039;
+        public static final int first_name=0x7f06001f;
+        public static final int h=0x7f060031;
+        public static final int ip=0x7f060036;
+        public static final int k=0x7f060032;
+        public static final int last_name=0x7f060020;
         public static final int lf=0x7f060017;
-        public static final int line_up=0x7f060020;
-        public static final int manage_team=0x7f060021;
-        public static final int name_stub=0x7f06002e;
-        public static final int number=0x7f060022;
+        public static final int line_up=0x7f060021;
+        public static final int manage_team=0x7f060022;
+        public static final int name_stub=0x7f06002f;
+        public static final int number=0x7f060023;
         /**  Positions 
          */
         public static final int p=0x7f060011;
-        public static final int pitching=0x7f060023;
-        public static final int positions=0x7f060024;
-        public static final int r=0x7f060036;
+        public static final int pitching=0x7f060024;
+        public static final int positions=0x7f060025;
+        public static final int r=0x7f060037;
         public static final int rf=0x7f060019;
-        public static final int roster=0x7f060025;
-        public static final int save=0x7f060026;
-        public static final int schedule=0x7f060027;
-        public static final int season_statistics=0x7f060028;
-        public static final int select_team=0x7f060029;
+        public static final int roster=0x7f060026;
+        public static final int save=0x7f060027;
+        public static final int schedule=0x7f060028;
+        public static final int season_statistics=0x7f060029;
+        public static final int select_team=0x7f06002a;
         public static final int ss=0x7f060016;
-        public static final int team_logo=0x7f06002b;
-        public static final int team_name=0x7f06002a;
+        public static final int team_logo=0x7f06002c;
+        public static final int team_name=0x7f06002b;
         public static final int title_activity_add_edit_player=0x7f060007;
         public static final int title_activity_batting_defense_stats=0x7f06000e;
         public static final int title_activity_create_team=0x7f060002;
@@ -179,8 +199,8 @@ public final class R {
         public static final int title_activity_team_page=0x7f060003;
         public static final int title_activity_team_select=0x7f060001;
         public static final int title_activity_upcoming_games=0x7f06000c;
-        public static final int upload_logo=0x7f06002c;
-        public static final int welcome=0x7f06002d;
+        public static final int upload_logo=0x7f06002d;
+        public static final int welcome=0x7f06002e;
     }
     public static final class style {
         /** 

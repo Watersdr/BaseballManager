@@ -9,18 +9,54 @@
     tools:context="edu.rosehulman.baseballmanager.TeamSelectActivity" >
 
      <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textSize="20sp"
         android:text="@string/welcome" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/select_team_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/welcome_text"
         android:layout_centerHorizontal="true"
         android:text="@string/select_team" />
+
+    <Button
+        android:id="@+id/create_team_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/create_team" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/create_team_button"
+        android:layout_below="@+id/select_team_text"
+        android:layout_margin="30dp"
+        android:background="@color/black">
+        
+		<FrameLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:layout_margin="2dp"
+		        android:background="@color/white">
+		        
+	        <ListView
+	            android:id="@+id/listView1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" >
+	
+	        </ListView>
+        </FrameLayout>
+
+    </FrameLayout>
+
 </RelativeLayout>
