@@ -54,7 +54,6 @@ public final class R {
         public static final int create_team_button=0x7f09002e;
         public static final int defense_stats_list_view=0x7f090011;
         public static final int earned_runs=0x7f09003a;
-        public static final int editText1=0x7f090001;
         public static final int editText2=0x7f090003;
         public static final int editText3=0x7f090005;
         public static final int era=0x7f09003d;
@@ -71,6 +70,7 @@ public final class R {
         public static final int listView1=0x7f09002f;
         public static final int listview=0x7f090026;
         public static final int mainLayout=0x7f090027;
+        public static final int new_first_name=0x7f090001;
         public static final int pitcher_name=0x7f090037;
         public static final int pitcher_spinner=0x7f09001a;
         public static final int pitching_stats_list_view=0x7f090028;
