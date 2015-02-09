@@ -51,7 +51,7 @@ public class GameDataAdapter {
 	}
 	
 	public GameDataAdapter(Context context) {
-		mOpenHelper = new DatabaseHelper(context);
+		mOpenHelper = DatabaseHelper.getInstance(context);
 	}
 	
 	public void open() {

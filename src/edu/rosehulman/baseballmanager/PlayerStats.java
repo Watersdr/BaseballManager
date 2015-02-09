@@ -4,6 +4,8 @@ public class PlayerStats {
 	private long id, playerID, gameID;
 	private int battingOrder, abs, h, k, bb, e, ip, p_k, p_bb, p_r, p_er;
 	
+	public PlayerStats() {}
+
 	public PlayerStats(long playerID, long gameID, int battingOrder, int abs, int h, int k, int bb, int e, int ip, int p_k, int p_bb, int p_r, int p_er) {
 		this.playerID = playerID;
 		this.gameID = gameID;
@@ -19,6 +21,32 @@ public class PlayerStats {
 		this.p_r = p_r;
 		this.p_er = p_er;
 	}
+	
+	public void setPlayerID(long playerID) { this.playerID = playerID; }
+
+	public void setGameID(long gameID) { this.gameID = gameID; }
+
+	public void setBattingOrder(int battingOrder) { this.battingOrder = battingOrder; }
+
+	public void setAbs(int abs) { this.abs = abs; }
+
+	public void setH(int h) { this.h = h; }
+
+	public void setK(int k) { this.k = k; }
+
+	public void setBb(int bb) { this.bb = bb; }
+
+	public void setE(int e) { this.e = e; }
+
+	public void setIp(int ip) { this.ip = ip; }
+
+	public void setP_k(int p_k) { this.p_k = p_k; }
+
+	public void setP_bb(int p_bb) { this.p_bb = p_bb; }
+
+	public void setP_r(int p_r) { this.p_r = p_r; }
+
+	public void setP_er(int p_er) { this.p_er = p_er;}
 	
 	public long getID() { return id; }
     
