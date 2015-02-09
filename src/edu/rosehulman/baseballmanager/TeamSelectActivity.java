@@ -26,7 +26,6 @@ public class TeamSelectActivity extends Activity {
 		
 		mTeamDataAdapter = new TeamDataAdapter(this);
 		mTeamDataAdapter.open();
-		
 
 		ListView listView = (ListView)findViewById(R.id.team_list_view);
 		
@@ -41,7 +40,9 @@ public class TeamSelectActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// Start teams activity somehow
+				Intent i = new Intent(TeamSelectActivity.this, TeamPageActivity.class);
+				i.putExtra(TeamDataAdapter.KEY_ID, id);
+				startActivity(i);
 			}
 		});
 		
@@ -57,7 +58,20 @@ public class TeamSelectActivity extends Activity {
 		
 		registerForContextMenu(listView);
 		
-		
+	}
+	
+	/*@Override
+	protected void onResume() {
+		/*if (mTeamDataAdapter != null) {
+			Cursor cursor = mTeamDataAdapter.getTeamsCursor();
+			mCursorAdapter.changeCursor(cursor);
+		}
+	}*/
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		mTeamDataAdapter.close();
 	}
 
 	@Override

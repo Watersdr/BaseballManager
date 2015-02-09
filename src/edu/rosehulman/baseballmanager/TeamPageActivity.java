@@ -8,13 +8,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class TeamPageActivity extends Activity {
+	private TeamDataAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_team_page);
+		adapter = new TeamDataAdapter(this);
+		adapter.open();
+		
+		Team t = adapter.getTeam(getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1));
+		((TextView) findViewById(R.id.team_name_item)).setText(getString(R.string.manage_team, t.getName()));
 		
 		Button rosterButton = (Button) findViewById(R.id.roster_button);
 		rosterButton.setOnClickListener(new OnClickListener() {
@@ -42,6 +49,12 @@ public class TeamPageActivity extends Activity {
 			}
 		});
 		
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		adapter.close();
 	}
 
 	protected void makeStatsIntent() {

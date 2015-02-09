@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,16 +27,20 @@ public class AddEditTeamActivity extends Activity {
 	private Bitmap mTeamBitmap;
 	
 	private static final int SELECT_PHOTO = 100;
+	private TeamDataAdapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_team);
-		
+
+		adapter = new TeamDataAdapter(this);
+		adapter.open();
 		
 		Button saveButton = (Button) findViewById(R.id.save_button);
 		Button uploadButton = (Button) findViewById(R.id.upload_button);
 		mTeamPicture = (ImageView) findViewById(R.id.team_picture);
+		mTeamBitmap = ((BitmapDrawable) mTeamPicture.getDrawable()).getBitmap();
 		mTeamName = (EditText) findViewById(R.id.new_team_name);
 		
 		mTeamPicture.setOnClickListener(new OnClickListener() {
@@ -73,15 +78,21 @@ public class AddEditTeamActivity extends Activity {
 				mTeamBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 				byte[] byteArray = stream.toByteArray();
 				Team newTeam = new Team(name, byteArray);
-				TeamDataAdapter adapter = new TeamDataAdapter(AddEditTeamActivity.this);
-				adapter.open();
 				adapter.addTeam(newTeam);
 				
 				Intent i = new Intent(AddEditTeamActivity.this, TeamPageActivity.class);
+				i.putExtra(TeamDataAdapter.KEY_ID, newTeam.getID());
 				AddEditTeamActivity.this.startActivity(i);
 				AddEditTeamActivity.this.finish();
 			}
 		});
+	}
+
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		adapter.close();
 	}
 
 	@Override

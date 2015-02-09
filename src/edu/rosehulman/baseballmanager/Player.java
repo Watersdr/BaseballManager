@@ -14,6 +14,11 @@ public class Player {
 		this.teamID = teamID;
 	}
 	
+	@Override
+	public String toString() {
+		return fName + " " + lName;
+	}
+	
 	public String getFName() { return fName; }
 	
 	public String getLName() { return lName; }

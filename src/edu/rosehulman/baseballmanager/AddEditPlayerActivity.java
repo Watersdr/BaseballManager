@@ -80,6 +80,12 @@ public class AddEditPlayerActivity extends Activity {
 		});
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		mPlayerDataAdapter.close();
+	}
+	
 	
 	/*
 	@Override

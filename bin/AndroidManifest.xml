@@ -59,11 +59,11 @@
             android:label="@string/title_activity_game_recap" >
         </activity>
         <activity
-            android:name=".LineupActivity"
+            android:name=".LineupFragment"
             android:label="@string/title_activity_lineup" >
         </activity>
         <activity
-            android:name=".DepthChartActivity"
+            android:name=".DepthChartFragment"
             android:label="@string/title_activity_depth_chart" >
         </activity>
         <activity
