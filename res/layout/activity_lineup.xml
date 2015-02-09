@@ -9,7 +9,7 @@
     tools:context="edu.rosehulman.baseballmanager.LineupFragment" >
 
     <edu.rosehulman.baseballmanager.DynamicListView
-            android:id="@+id/listview"
+            android:id="@+id/lineup_listview"
             android:background="#0000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

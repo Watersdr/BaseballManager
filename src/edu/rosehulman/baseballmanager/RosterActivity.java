@@ -12,7 +12,7 @@ import android.view.MenuItem;
 public class RosterActivity extends Activity {
 
 	private ActionBar.Tab Tab1, Tab2;
-	private Fragment fragmentTab1, fragmentTab2;
+	private Fragment lineupFragment, fragmentTab2;
 	private long teamID;
 	private static final int REQUEST_PLAYER_ADDEDIT = 1;
 	
@@ -22,7 +22,7 @@ public class RosterActivity extends Activity {
 		setContentView(R.layout.activity_roster);
 
 		teamID = getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1);
-		fragmentTab1 = new LineupFragment();
+		lineupFragment = new LineupFragment(teamID);
 		fragmentTab2 = new DepthChartFragment();
  
 		ActionBar actionBar = getActionBar();
@@ -35,7 +35,7 @@ public class RosterActivity extends Activity {
 		Tab2 = actionBar.newTab().setText("Depth-Chart");
  
 		// Set Tab Listeners
-		Tab1.setTabListener(new TabListener(fragmentTab1));
+		Tab1.setTabListener(new TabListener(lineupFragment));
 		Tab2.setTabListener(new TabListener(fragmentTab2));
  
 		// Add tabs to actionbar
@@ -70,7 +70,7 @@ public class RosterActivity extends Activity {
         switch (requestCode) {
             case REQUEST_PLAYER_ADDEDIT:
                 if (resultCode == Activity.RESULT_OK){
-                	// Update line-up and depth-chart
+                	((LineupFragment) lineupFragment).updateLineup();
                     Log.d(SplashScreen.BM, "Result ok!");
                 } 
                 else {
