@@ -1,18 +1,15 @@
 package edu.rosehulman.baseballmanager;
 
-import android.graphics.Bitmap;
-
 
 public class Team {
-	private String name;
-	private Bitmap logoBitmap;
+	private String name, logoURL;
 	private long id;
 	
 	public Team(){}
 	
-	public Team(String name, Bitmap logoBitmap) {
+	public Team(String name, String logoURL) {
 		this.name = name;
-		this.logoBitmap = logoBitmap;
+		this.logoURL = logoURL;
 	}
 	
 	public String getName() {
@@ -23,12 +20,12 @@ public class Team {
 		this.name = name;
 	}
 	
-	public Bitmap getLogoBitmap() {
-		return logoBitmap;
+	public String getLogoURL() {
+		return logoURL;
 	}
 	
-	public void setLogoBitmap(Bitmap logoBitmap) {
-		this.logoBitmap = logoBitmap;
+	public void setLogoURL(String logoURL) {
+		this.logoURL = logoURL;
 	}
 	
 	public long getID() { return id; }
