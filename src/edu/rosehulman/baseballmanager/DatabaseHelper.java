@@ -31,7 +31,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 	sb.append("CREATE TABLE " + PlayerDataAdapter.TABLE_NAME + " (");
 	 	sb.append(PlayerDataAdapter.KEY_ID + " integer primary key autoincrement, ");
 	 	sb.append(PlayerDataAdapter.KEY_TEAM_ID + " integer, ");
-	 	sb.append(PlayerDataAdapter.KEY_NAME + " text, ");
+	 	sb.append(PlayerDataAdapter.KEY_F_NAME + " text, ");
+	 	sb.append(PlayerDataAdapter.KEY_L_NAME + " text, ");
 	 	sb.append(PlayerDataAdapter.KEY_NUMBER + " integer, ");
 	 	sb.append(PlayerDataAdapter.KEY_DC_P + " integer, ");
 	 	sb.append(PlayerDataAdapter.KEY_DC_C + " integer, ");

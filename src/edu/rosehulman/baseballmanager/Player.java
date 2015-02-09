@@ -1,19 +1,22 @@
 package edu.rosehulman.baseballmanager;
 
 public class Player {
-	private String name;
+	private String fName, lName;
 	private int number, dc_C, dc_P, dc_1B, dc_2B, dc_3B, dc_SS, dc_LF, dc_CF, dc_RF, battingOrder;
 	private long id, teamID;
 	
 	public Player() {}
 	
-	public Player(String name, int number, long teamID) {
-		this.name = name;
+	public Player(String fName, String lName, int number, long teamID) {
+		this.fName = fName;
+		this.lName = lName;
 		this.number = number;
 		this.teamID = teamID;
 	}
 	
-	public String getName() { return name; }
+	public String getFName() { return fName; }
+	
+	public String getLName() { return lName; }
 	
 	public int getDc_C() { return dc_C; }
 
@@ -57,7 +60,9 @@ public class Player {
 
 	public void setTeamID(long teamID) { this.teamID = teamID; }
 
-	public void setName(String name) { this.name = name; }
+	public void setFName(String name) { this.fName = name; }
+
+	public void setLName(String name) { this.lName = name; }
 
 	public int getNumber() { return this.number; }
     
