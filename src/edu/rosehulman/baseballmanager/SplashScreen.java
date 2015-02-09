@@ -26,9 +26,10 @@ public class SplashScreen extends Activity {
             	Cursor cursor = teams.getTeamsCursor();
             	
             	
+            	
             	// Prompt user to create a team if there aren't any. Otherwise, goto team select
                 Intent i;
-                if(true /* count == 0 */) {
+                if(cursor.getCount() == 0 /* count == 0 */) {
                 	i = new Intent(SplashScreen.this, AddEditTeamActivity.class);
                 } else {
                 	i = new Intent(SplashScreen.this, TeamSelectActivity.class);

@@ -50,7 +50,7 @@
 		        android:background="@color/white">
 		        
 	        <ListView
-	            android:id="@+id/listView1"
+	            android:id="@+id/team_list_view"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content" >
 	

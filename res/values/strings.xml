@@ -65,5 +65,6 @@
     <string name="r">R</string>
     <string name="er">ER</string>
     <string name="era">ERA</string>
+    <string name="team_name_empty_string">Team Name</string>
 
 </resources>
