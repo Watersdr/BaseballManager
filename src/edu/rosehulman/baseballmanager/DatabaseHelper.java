@@ -99,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 	sb.append(InningDataAdapter.KEY_HOME_ERRORS + " integer, ");
 	 	sb.append(InningDataAdapter.KEY_AWAY_ERRORS + " integer");
 	 	sb.append(")");
-	 	CREATE_GAME = sb.toString();
+	 	CREATE_INNING = sb.toString();
 	}
 
 	private DatabaseHelper(Context context) {
