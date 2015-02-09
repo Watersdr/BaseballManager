@@ -2,6 +2,7 @@ package edu.rosehulman.baseballmanager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -20,8 +21,9 @@ public class SplashScreen extends Activity {
             @Override
             public void run() {
                 // Load teams in database
-            	
-            	
+            	TeamDataAdapter teams = new TeamDataAdapter(SplashScreen.this);
+            	teams.open();
+            	Cursor cursor = teams.getTeamsCursor();
             	
             	
             	// Prompt user to create a team if there aren't any. Otherwise, goto team select
