@@ -2,7 +2,6 @@ package edu.rosehulman.baseballmanager;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -12,6 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String KEY_ID = "_id";
 	public static final String BM = "BM";
 	
+	private static DatabaseHelper instance;
 	private static String DROP_TEAM = "DROP TABLE IF EXISTS " + TeamDataAdapter.TABLE_NAME;
 	private static String CREATE_TEAM;
 	static {
@@ -101,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 	CREATE_GAME = sb.toString();
 	}
 
-	public DatabaseHelper(Context context) {
+	private DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
@@ -127,5 +127,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(CREATE_PLAYER_STATS);
 		db.execSQL(CREATE_GAME);
 		db.execSQL(CREATE_INNING);
+	}
+	
+	public static DatabaseHelper getInstance(Context context) {
+		if (DatabaseHelper.instance == null) {
+			DatabaseHelper.instance = new DatabaseHelper(context);
+			
+		}
+		
+		return DatabaseHelper.instance;
 	}
 }

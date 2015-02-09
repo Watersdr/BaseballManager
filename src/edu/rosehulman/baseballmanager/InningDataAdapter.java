@@ -61,7 +61,7 @@ public class InningDataAdapter {
 	}
 	
 	public InningDataAdapter(Context context) {
-		mOpenHelper = new DatabaseHelper(context);
+		mOpenHelper = DatabaseHelper.getInstance(context);
 	}
 	
 	public void open() {

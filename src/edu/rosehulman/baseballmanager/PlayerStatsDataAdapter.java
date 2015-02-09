@@ -71,7 +71,7 @@ public class PlayerStatsDataAdapter {
 	}
 	
 	public PlayerStatsDataAdapter(Context context) {
-		mOpenHelper = new DatabaseHelper(context);
+		mOpenHelper = DatabaseHelper.getInstance(context);
 	}
 	
 	public void open() {

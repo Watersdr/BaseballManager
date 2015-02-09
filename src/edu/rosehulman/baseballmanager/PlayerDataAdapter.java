@@ -71,7 +71,7 @@ public class PlayerDataAdapter {
 	}
 	
 	public PlayerDataAdapter(Context context) {
-		mOpenHelper = new DatabaseHelper(context);
+		mOpenHelper = DatabaseHelper.getInstance(context);
 	}
 	
 	public void open() {
