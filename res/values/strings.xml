@@ -32,6 +32,7 @@
     <string name="rf">RF</string>
     <!-- Other Strings -->
     <string name="create_team">Create Team</string>
+    <string name="baseball">Baseball</string>
     <string name="cubs">Cubs</string>
     <string name="enter_first_name">Enter First Name</string>
     <string name="enter_last_name">Enter Last Name</string>
@@ -40,6 +41,7 @@
     <string name="last_name">Last Name</string>
     <string name="line_up">Line-up</string>
     <string name="manage_team">Manage the %s</string>
+    <string name="manager">Manager</string>
     <string name="number">Number</string>
     <string name="pitching">Pitching</string>
     <string name="positions">Positions</string>
