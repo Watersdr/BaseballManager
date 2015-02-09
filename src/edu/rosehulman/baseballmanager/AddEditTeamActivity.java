@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class AddEditTeamActivity extends Activity {
 
@@ -61,12 +62,19 @@ public class AddEditTeamActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				mTeamPicture = (ImageView) findViewById(R.id.team_picture);
+				mTeamName = (EditText) findViewById(R.id.new_team_name);
 				String name = mTeamName.getText().toString();
+				if (mTeamBitmap == null) {
+					Toast.makeText(AddEditTeamActivity.this, "Please select a logo for your team", Toast.LENGTH_LONG).show();
+					return;
+				}
 				ByteArrayOutputStream stream = new ByteArrayOutputStream();
 				mTeamBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 				byte[] byteArray = stream.toByteArray();
 				Team newTeam = new Team(name, byteArray);
 				TeamDataAdapter adapter = new TeamDataAdapter(AddEditTeamActivity.this);
+				adapter.open();
 				adapter.addTeam(newTeam);
 				
 				Intent i = new Intent(AddEditTeamActivity.this, TeamPageActivity.class);
