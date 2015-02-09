@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 	sb.append("CREATE TABLE " + TeamDataAdapter.TABLE_NAME + " (");
 	 	sb.append(TeamDataAdapter.KEY_ID + " integer primary key autoincrement, ");
 	 	sb.append(TeamDataAdapter.KEY_NAME + " text, ");
-	 	sb.append(TeamDataAdapter.KEY_LOGOURL + " text");
+	 	sb.append(TeamDataAdapter.KEY_LOGO + " blob");
 	 	sb.append(")");
 	 	CREATE_TEAM = sb.toString();
 	}

@@ -2,14 +2,15 @@ package edu.rosehulman.baseballmanager;
 
 
 public class Team {
-	private String name, logoURL;
+	private String name;
+	private byte[] logo;
 	private long id;
 	
 	public Team(){}
 	
-	public Team(String name, String logoURL) {
+	public Team(String name, byte[] logo) {
 		this.name = name;
-		this.logoURL = logoURL;
+		this.logo = logo;
 	}
 	
 	public String getName() {
@@ -20,12 +21,12 @@ public class Team {
 		this.name = name;
 	}
 	
-	public String getLogoURL() {
-		return logoURL;
+	public byte[] getLogo() {
+		return logo;
 	}
 	
-	public void setLogoURL(String logoURL) {
-		this.logoURL = logoURL;
+	public void setLogo(byte[] bs) {
+		this.logo = bs;
 	}
 	
 	public long getID() { return id; }

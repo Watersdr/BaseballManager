@@ -11,7 +11,7 @@ public class TeamDataAdapter {
 
 	public static final String KEY_ID = "_id";
 	public static final String KEY_NAME = "name";
-	public static final String KEY_LOGOURL = "logoURL";
+	public static final String KEY_LOGO = "logo";
 
 	private SQLiteOpenHelper mOpenHelper;
 	private SQLiteDatabase mDatabase;
@@ -31,7 +31,7 @@ public class TeamDataAdapter {
 	}
 	
 	public Team getTeam(long id) {
-	 	String[] projection = new String[] { KEY_ID, KEY_NAME, KEY_LOGOURL };
+	 	String[] projection = new String[] { KEY_ID, KEY_NAME, KEY_LOGO };
 	 	String selection = KEY_ID + " = " + id;
 	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_NAME + " DESC");
 	 	if (c != null && c.moveToFirst()) {
@@ -44,7 +44,7 @@ public class TeamDataAdapter {
 		Team t = new Team();
 	 	t.setID(c.getInt(c.getColumnIndexOrThrow(KEY_ID)));
 	 	t.setName(c.getString(c.getColumnIndexOrThrow(KEY_NAME)));
-	 	t.setLogoURL(c.getString(c.getColumnIndexOrThrow(KEY_LOGOURL)));
+	 	t.setLogo(c.getBlob(c.getColumnIndexOrThrow(KEY_LOGO)));
 	 	return t;
 	}
 	
@@ -70,12 +70,12 @@ public class TeamDataAdapter {
 	private ContentValues getContentValuesFromTeam(Team team) {
 	 	ContentValues row = new ContentValues();
 	 	row.put(KEY_NAME, team.getName());
-	 	row.put(KEY_LOGOURL, team.getLogoURL());
+	 	row.put(KEY_LOGO, team.getLogo());
 	 	return row;
 	}
 
 	public Cursor getTeamsCursor() {
-	 	String[] projection = new String[] { KEY_ID, KEY_NAME, KEY_LOGOURL };
+	 	String[] projection = new String[] { KEY_ID, KEY_NAME, KEY_LOGO };
 	 	return mDatabase.query(TABLE_NAME, projection, null, null, null, null, KEY_NAME + " DESC");
 	}
 
