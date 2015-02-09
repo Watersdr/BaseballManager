@@ -118,15 +118,15 @@ public class PlayerDataAdapter {
 				"SELECT MAX(" + KEY_DC_P + ") + MAX(" + KEY_DC_C + ") + MAX(" + KEY_DC_1B + ") + MAX(" + KEY_DC_2B + ") + MAX(" + KEY_DC_3B + ") + MAX(" + KEY_DC_SS + ") + MAX(" + KEY_DC_LF + ") + MAX(" + KEY_DC_CF + ") + MAX(" + KEY_DC_RF + ") + MAX(" + KEY_BATTING_ORDER + ") FROM " + TABLE_NAME + " WHERE " + KEY_TEAM_ID + "=?", 
 				new String[] { mPlayer.getTeamID()+"" }
 		);
-		mPlayer.setDc_P(mPlayer.getDc_P() == 0 ? c.getInt(0) : mPlayer.getDc_P() );
-		mPlayer.setDc_C(mPlayer.getDc_C() == 0 ? c.getInt(1) : mPlayer.getDc_C() );
-		mPlayer.setDc_1B(mPlayer.getDc_1B() == 0 ? c.getInt(2) : mPlayer.getDc_1B() );
-		mPlayer.setDc_2B(mPlayer.getDc_2B() == 0 ? c.getInt(3) : mPlayer.getDc_2B() );
-		mPlayer.setDc_3B(mPlayer.getDc_3B() == 0 ? c.getInt(4) : mPlayer.getDc_3B() );
-		mPlayer.setDc_SS(mPlayer.getDc_SS() == 0 ? c.getInt(5) : mPlayer.getDc_SS() );
-		mPlayer.setDc_LF(mPlayer.getDc_LF() == 0 ? c.getInt(6) : mPlayer.getDc_LF() );
-		mPlayer.setDc_CF(mPlayer.getDc_CF() == 0 ? c.getInt(7) : mPlayer.getDc_CF() );
-		mPlayer.setDc_RF(mPlayer.getDc_RF() == 0 ? c.getInt(8) : mPlayer.getDc_RF() );
+		mPlayer.setDc_P(mPlayer.getDc_P() == 0 ? (c.isNull(0) ? 0 : c.getInt(0)) : mPlayer.getDc_P() );
+		mPlayer.setDc_C(mPlayer.getDc_C() == 0 ? (c.isNull(1) ? 0 : c.getInt(1)) : mPlayer.getDc_C() );
+		mPlayer.setDc_1B(mPlayer.getDc_1B() == 0 ? (c.isNull(2) ? 0 : c.getInt(2)) : mPlayer.getDc_1B() );
+		mPlayer.setDc_2B(mPlayer.getDc_2B() == 0 ? (c.isNull(3) ? 0 : c.getInt(3)) : mPlayer.getDc_2B() );
+		mPlayer.setDc_3B(mPlayer.getDc_3B() == 0 ? (c.isNull(4) ? 0 : c.getInt(4)) : mPlayer.getDc_3B() );
+		mPlayer.setDc_SS(mPlayer.getDc_SS() == 0 ? (c.isNull(5) ? 0 : c.getInt(5)) : mPlayer.getDc_SS() );
+		mPlayer.setDc_LF(mPlayer.getDc_LF() == 0 ? (c.isNull(6) ? 0 : c.getInt(6)) : mPlayer.getDc_LF() );
+		mPlayer.setDc_CF(mPlayer.getDc_CF() == 0 ? (c.isNull(7) ? 0 : c.getInt(7)) : mPlayer.getDc_CF() );
+		mPlayer.setDc_RF(mPlayer.getDc_RF() == 0 ? (c.isNull(8) ? 0 : c.getInt(8)) : mPlayer.getDc_RF() );
 		mPlayer.setBattingOrder(mPlayer.getBattingOrder() == -1 ? c.getInt(9) : mPlayer.getBattingOrder() );
 		
 	}

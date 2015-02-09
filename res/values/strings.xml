@@ -20,6 +20,7 @@
     <string name="title_activity_pitching_stats">Pitching Statistics</string>
     <!-- Menu Options -->
     <string name="action_settings">Settings</string>
+    <string name="add_player">Add Player</string>
     <!-- Positions -->
     <string name="p">P</string>
     <string name="c">C</string>

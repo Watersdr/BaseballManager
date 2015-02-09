@@ -10,6 +10,8 @@ public class SplashScreen extends Activity {
 
 	// Splash screen timer
     private static int SPLASH_TIME_OUT = 500;
+    
+    public static final String BM = "BM";
  
     @Override
     protected void onCreate(Bundle savedInstanceState) {

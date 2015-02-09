@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 public class TeamPageActivity extends Activity {
 	private TeamDataAdapter adapter;
+	private Team team;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +21,8 @@ public class TeamPageActivity extends Activity {
 		adapter = new TeamDataAdapter(this);
 		adapter.open();
 		
-		Team t = adapter.getTeam(getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1));
-		((TextView) findViewById(R.id.team_name_item)).setText(getString(R.string.manage_team, t.getName()));
+		team = adapter.getTeam(getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1));
+		((TextView) findViewById(R.id.team_name_item)).setText(getString(R.string.manage_team, team.getName()));
 		
 		Button rosterButton = (Button) findViewById(R.id.roster_button);
 		rosterButton.setOnClickListener(new OnClickListener() {
@@ -69,6 +70,7 @@ public class TeamPageActivity extends Activity {
 
 	protected void makeRosterIntent() {
 		Intent i = new Intent(this, RosterActivity.class);
+		i.putExtra(TeamDataAdapter.KEY_ID, team.getID());
 		startActivity(i);
 	}
 
