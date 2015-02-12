@@ -1,11 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="edu.rosehulman.baseballmanager.LineupActivity" >
-
+    
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/edit_player"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/edit_player"/>
+    
+    <item
+        android:id="@+id/remove_player"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/remove_player"/>
+    
+    <item
+        android:id="@+id/add_player"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/add_player"/>
 
 </menu>

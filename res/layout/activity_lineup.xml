@@ -6,7 +6,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.rosehulman.baseballmanager.LineupFragment" >
+    tools:context="edu.rosehulman.baseballmanager.LineupFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/line_up_instructions"
+        android:paddingBottom="10dp"/>
 
     <edu.rosehulman.baseballmanager.DynamicListView
             android:id="@+id/lineup_listview"

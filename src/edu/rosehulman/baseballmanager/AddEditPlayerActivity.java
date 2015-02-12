@@ -26,23 +26,36 @@ public class AddEditPlayerActivity extends Activity {
 		Button saveButton = (Button) findViewById(R.id.save_player);
 		final EditText fName = (EditText) findViewById(R.id.first_name);
 		final EditText lName = (EditText) findViewById(R.id.last_name);
-		final EditText number = (EditText) findViewById(R.id.number);
+		final EditText number = (EditText) findViewById(R.id.player_number);
+		final CheckBox chkP = (CheckBox) findViewById(R.id.chk_p);
+		final CheckBox chkC = (CheckBox) findViewById(R.id.chk_c);
+		final CheckBox chk1B = (CheckBox) findViewById(R.id.chk_1b);
+		final CheckBox chk2B = (CheckBox) findViewById(R.id.chk_2b);
+		final CheckBox chk3B = (CheckBox) findViewById(R.id.chk_3b);
+		final CheckBox chkSS = (CheckBox) findViewById(R.id.chk_ss);
+		final CheckBox chkLF = (CheckBox) findViewById(R.id.chk_lf);
+		final CheckBox chkCF = (CheckBox) findViewById(R.id.chk_cf);
+		final CheckBox chkRF = (CheckBox) findViewById(R.id.chk_rf);
 		
-		Intent i = new Intent();
-		id = i.getIntExtra(PlayerDataAdapter.KEY_ID, -1);
-		teamID = i.getIntExtra(PlayerDataAdapter.KEY_TEAM_ID, -1);
+		Intent i = getIntent();
+		id = i.getLongExtra(PlayerDataAdapter.KEY_ID, -1);
+		teamID = i.getLongExtra(PlayerDataAdapter.KEY_TEAM_ID, -1);
+		
 		
 		if (id > -1) {
 			mPlayer = mPlayerDataAdapter.getPlayer(id);
-			((CheckBox) findViewById(R.id.chk_p)).setSelected(mPlayer.getDc_P() > -1);
-			((CheckBox) findViewById(R.id.chk_c)).setSelected(mPlayer.getDc_C() > -1);
-			((CheckBox) findViewById(R.id.chk_1b)).setSelected(mPlayer.getDc_1B() > -1);
-			((CheckBox) findViewById(R.id.chk_2b)).setSelected(mPlayer.getDc_2B() > -1);
-			((CheckBox) findViewById(R.id.chk_3b)).setSelected(mPlayer.getDc_3B() > -1);
-			((CheckBox) findViewById(R.id.chk_ss)).setSelected(mPlayer.getDc_SS() > -1);
-			((CheckBox) findViewById(R.id.chk_lf)).setSelected(mPlayer.getDc_LF() > -1);
-			((CheckBox) findViewById(R.id.chk_cf)).setSelected(mPlayer.getDc_CF() > -1);
-			((CheckBox) findViewById(R.id.chk_rf)).setSelected(mPlayer.getDc_RF() > -1);
+			fName.setText(mPlayer.getFName());
+			lName.setText(mPlayer.getLName());
+			number.setText(""+mPlayer.getNumber());
+			chkP.setChecked(mPlayer.getDc_P() > -1);
+			chkC.setChecked(mPlayer.getDc_C() > -1);
+			chk1B.setChecked(mPlayer.getDc_1B() > -1);
+			chk2B.setChecked(mPlayer.getDc_2B() > -1);
+			chk3B.setChecked(mPlayer.getDc_3B() > -1);
+			chkSS.setChecked(mPlayer.getDc_SS() > -1);
+			chkLF.setChecked(mPlayer.getDc_LF() > -1);
+			chkCF.setChecked(mPlayer.getDc_CF() > -1);
+			chkRF.setChecked(mPlayer.getDc_RF() > -1);
 		}
 		
 		saveButton.setOnClickListener(new OnClickListener() {
@@ -51,26 +64,28 @@ public class AddEditPlayerActivity extends Activity {
 			public void onClick(View v) {
 				if (id == -1) {
 					Player p = new Player(fName.getText().toString(), lName.getText().toString(), Integer.parseInt(number.getText().toString()), teamID);
-					p.setDc_P(((CheckBox) findViewById(R.id.chk_p)).isSelected() ? 0 : -1);
-					p.setDc_C(((CheckBox) findViewById(R.id.chk_c)).isSelected() ? 0 : -1);
-					p.setDc_1B(((CheckBox) findViewById(R.id.chk_1b)).isSelected() ? 0 : -1);
-					p.setDc_2B(((CheckBox) findViewById(R.id.chk_2b)).isSelected() ? 0 : -1);
-					p.setDc_3B(((CheckBox) findViewById(R.id.chk_3b)).isSelected() ? 0 : -1);
-					p.setDc_SS(((CheckBox) findViewById(R.id.chk_ss)).isSelected() ? 0 : -1);
-					p.setDc_LF(((CheckBox) findViewById(R.id.chk_lf)).isSelected() ? 0 : -1);
-					p.setDc_CF(((CheckBox) findViewById(R.id.chk_cf)).isSelected() ? 0 : -1);
-					p.setDc_RF(((CheckBox) findViewById(R.id.chk_rf)).isSelected() ? 0 : -1);
+					p.setDc_P(chkP.isChecked() ? 0 : -1);
+					p.setDc_C(chkC.isChecked() ? 0 : -1);
+					p.setDc_1B(chk1B.isChecked() ? 0 : -1);
+					p.setDc_2B(chk2B.isChecked() ? 0 : -1);
+					p.setDc_3B(chk3B.isChecked() ? 0 : -1);
+					p.setDc_SS(chkSS.isChecked() ? 0 : -1);
+					p.setDc_LF(chkLF.isChecked() ? 0 : -1);
+					p.setDc_CF(chkCF.isChecked() ? 0 : -1);
+					p.setDc_RF(chkRF.isChecked() ? 0 : -1);
+					p.setBattingOrder(-1);
 					mPlayerDataAdapter.addPlayer(p);
 				} else {
-					mPlayer.setDc_P(((CheckBox) findViewById(R.id.chk_p)).isSelected() ? (mPlayer.getDc_P() == -1 ? 0 : mPlayer.getDc_P()) : -1);
-					mPlayer.setDc_C(((CheckBox) findViewById(R.id.chk_c)).isSelected() ? (mPlayer.getDc_C() == -1 ? 0 : mPlayer.getDc_C()) : -1);
-					mPlayer.setDc_1B(((CheckBox) findViewById(R.id.chk_1b)).isSelected() ? (mPlayer.getDc_1B() == -1 ? 0 : mPlayer.getDc_1B()) : -1);
-					mPlayer.setDc_2B(((CheckBox) findViewById(R.id.chk_2b)).isSelected() ? (mPlayer.getDc_2B() == -1 ? 0 : mPlayer.getDc_2B()) : -1);
-					mPlayer.setDc_3B(((CheckBox) findViewById(R.id.chk_3b)).isSelected() ? (mPlayer.getDc_3B() == -1 ? 0 : mPlayer.getDc_3B()) : -1);
-					mPlayer.setDc_SS(((CheckBox) findViewById(R.id.chk_ss)).isSelected() ? (mPlayer.getDc_SS() == -1 ? 0 : mPlayer.getDc_SS()) : -1);
-					mPlayer.setDc_LF(((CheckBox) findViewById(R.id.chk_lf)).isSelected() ? (mPlayer.getDc_LF() == -1 ? 0 : mPlayer.getDc_LF()) : -1);
-					mPlayer.setDc_CF(((CheckBox) findViewById(R.id.chk_cf)).isSelected() ? (mPlayer.getDc_CF() == -1 ? 0 : mPlayer.getDc_CF()) : -1);
-					mPlayer.setDc_RF(((CheckBox) findViewById(R.id.chk_rf)).isSelected() ? (mPlayer.getDc_RF() == -1 ? 0 : mPlayer.getDc_RF()) : -1);
+					mPlayer.setDc_P(chkP.isChecked() ? (mPlayer.getDc_P() == -1 ? 0 : mPlayer.getDc_P()) : -1);
+					mPlayer.setDc_C(chkC.isChecked() ? (mPlayer.getDc_C() == -1 ? 0 : mPlayer.getDc_C()) : -1);
+					mPlayer.setDc_1B(chk1B.isChecked() ? (mPlayer.getDc_1B() == -1 ? 0 : mPlayer.getDc_1B()) : -1);
+					mPlayer.setDc_2B(chk2B.isChecked() ? (mPlayer.getDc_2B() == -1 ? 0 : mPlayer.getDc_2B()) : -1);
+					mPlayer.setDc_3B(chk3B.isChecked() ? (mPlayer.getDc_3B() == -1 ? 0 : mPlayer.getDc_3B()) : -1);
+					mPlayer.setDc_SS(chkSS.isChecked() ? (mPlayer.getDc_SS() == -1 ? 0 : mPlayer.getDc_SS()) : -1);
+					mPlayer.setDc_LF(chkLF.isChecked() ? (mPlayer.getDc_LF() == -1 ? 0 : mPlayer.getDc_LF()) : -1);
+					mPlayer.setDc_CF(chkCF.isChecked() ? (mPlayer.getDc_CF() == -1 ? 0 : mPlayer.getDc_CF()) : -1);
+					mPlayer.setDc_RF(chkRF.isChecked() ? (mPlayer.getDc_RF() == -1 ? 0 : mPlayer.getDc_RF()) : -1);
+					mPlayerDataAdapter.updatePlayer(mPlayer);
 				}
 				
 				Intent returnIntent = new Intent();
@@ -80,12 +95,12 @@ public class AddEditPlayerActivity extends Activity {
 		});
 	}
 	
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		mPlayerDataAdapter.close();
-	}
-	
+//	@Override
+//	protected void onDestroy() {
+//		super.onDestroy();
+//		mPlayerDataAdapter.close();
+//	}
+//	
 	
 	/*
 	@Override

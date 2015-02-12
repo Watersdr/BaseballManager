@@ -10,7 +10,7 @@ public class PlayerDataAdapter {
 	public static final String TABLE_NAME = "players";
 
 	public static final String KEY_ID = "_id";
-	public static final String KEY_TEAM_ID = "player_id";
+	public static final String KEY_TEAM_ID = "team_id";
 	public static final String KEY_F_NAME = "f_name";
 	public static final String KEY_L_NAME = "l_name";
 	public static final String KEY_NUMBER = "number";
@@ -37,7 +37,7 @@ public class PlayerDataAdapter {
 	 	return removePlayer(p.getID());
 	}
 	
-	public void updateScore(Player player) {
+	public void updatePlayer(Player player) {
 		ContentValues row = getContentValuesFromPlayer(player);
 		String selection = KEY_ID + " = " + player.getID();
 		mDatabase.update(TABLE_NAME, row, selection, null);
@@ -46,7 +46,7 @@ public class PlayerDataAdapter {
 	public Player getPlayer(long id) {
 	 	String[] projection = new String[] { KEY_ID, KEY_TEAM_ID, KEY_F_NAME, KEY_L_NAME, KEY_NUMBER, KEY_DC_C, KEY_DC_P, KEY_DC_1B, KEY_DC_2B, KEY_DC_3B, KEY_DC_SS, KEY_DC_LF, KEY_DC_CF, KEY_DC_RF, KEY_BATTING_ORDER };
 	 	String selection = KEY_ID + " = " + id;
-	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_L_NAME + " DESC");
+	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_BATTING_ORDER + " ASC");
 	 	if (c != null && c.moveToFirst()) {
 	       	return getPlayerFromCursor(c);
 	 	}
@@ -56,7 +56,7 @@ public class PlayerDataAdapter {
 	public Cursor getTeamPlayers(long teamID) {
 	 	String[] projection = new String[] { KEY_ID, KEY_TEAM_ID, KEY_F_NAME, KEY_L_NAME, KEY_NUMBER, KEY_DC_C, KEY_DC_P, KEY_DC_1B, KEY_DC_2B, KEY_DC_3B, KEY_DC_SS, KEY_DC_LF, KEY_DC_CF, KEY_DC_RF, KEY_BATTING_ORDER };
 	 	String selection = KEY_TEAM_ID + " = " + teamID;
-	 	return mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_BATTING_ORDER + " DESC");
+	 	return mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_BATTING_ORDER + " ASC");
 	}
 	 
 	private Player getPlayerFromCursor(Cursor c) {
@@ -121,19 +121,33 @@ public class PlayerDataAdapter {
 	
 	private void setPositions() {
 		Cursor c = mDatabase.rawQuery(
-				"SELECT MAX(" + KEY_DC_P + ") + MAX(" + KEY_DC_C + ") + MAX(" + KEY_DC_1B + ") + MAX(" + KEY_DC_2B + ") + MAX(" + KEY_DC_3B + ") + MAX(" + KEY_DC_SS + ") + MAX(" + KEY_DC_LF + ") + MAX(" + KEY_DC_CF + ") + MAX(" + KEY_DC_RF + ") + MAX(" + KEY_BATTING_ORDER + ") FROM " + TABLE_NAME + " WHERE " + KEY_TEAM_ID + "=?", 
+				"SELECT MAX(" + KEY_DC_P + "), MAX(" + KEY_DC_C + "), MAX(" + KEY_DC_1B +"), + MAX(" + KEY_DC_2B + "), MAX(" + KEY_DC_3B + "), MAX(" + KEY_DC_SS + "), MAX(" + KEY_DC_LF + "), MAX(" + KEY_DC_CF + "), MAX(" + KEY_DC_RF + "), MAX(" + KEY_BATTING_ORDER + ") FROM " + TABLE_NAME + " WHERE " + KEY_TEAM_ID + "=?", 
 				new String[] { mPlayer.getTeamID()+"" }
 		);
-		mPlayer.setDc_P(mPlayer.getDc_P() == 0 ? (c.isNull(0) ? 0 : c.getInt(0)) : mPlayer.getDc_P() );
-		mPlayer.setDc_C(mPlayer.getDc_C() == 0 ? (c.isNull(1) ? 0 : c.getInt(1)) : mPlayer.getDc_C() );
-		mPlayer.setDc_1B(mPlayer.getDc_1B() == 0 ? (c.isNull(2) ? 0 : c.getInt(2)) : mPlayer.getDc_1B() );
-		mPlayer.setDc_2B(mPlayer.getDc_2B() == 0 ? (c.isNull(3) ? 0 : c.getInt(3)) : mPlayer.getDc_2B() );
-		mPlayer.setDc_3B(mPlayer.getDc_3B() == 0 ? (c.isNull(4) ? 0 : c.getInt(4)) : mPlayer.getDc_3B() );
-		mPlayer.setDc_SS(mPlayer.getDc_SS() == 0 ? (c.isNull(5) ? 0 : c.getInt(5)) : mPlayer.getDc_SS() );
-		mPlayer.setDc_LF(mPlayer.getDc_LF() == 0 ? (c.isNull(6) ? 0 : c.getInt(6)) : mPlayer.getDc_LF() );
-		mPlayer.setDc_CF(mPlayer.getDc_CF() == 0 ? (c.isNull(7) ? 0 : c.getInt(7)) : mPlayer.getDc_CF() );
-		mPlayer.setDc_RF(mPlayer.getDc_RF() == 0 ? (c.isNull(8) ? 0 : c.getInt(8)) : mPlayer.getDc_RF() );
-		mPlayer.setBattingOrder(mPlayer.getBattingOrder() == -1 ? c.getInt(9) : mPlayer.getBattingOrder() );
+		if(c.moveToNext())
+		{
+			mPlayer.setDc_P(mPlayer.getDc_P() == 0 ? (c.isNull(0) ? 0 : (c.getInt(0) + 1)) : mPlayer.getDc_P() );
+			mPlayer.setDc_C(mPlayer.getDc_C() == 0 ? (c.isNull(1) ? 0 : (c.getInt(1) + 1)) : mPlayer.getDc_C() );
+			mPlayer.setDc_1B(mPlayer.getDc_1B() == 0 ? (c.isNull(2) ? 0 : (c.getInt(2) + 1)) : mPlayer.getDc_1B() );
+			mPlayer.setDc_2B(mPlayer.getDc_2B() == 0 ? (c.isNull(3) ? 0 : (c.getInt(3) + 1)) : mPlayer.getDc_2B() );
+			mPlayer.setDc_3B(mPlayer.getDc_3B() == 0 ? (c.isNull(4) ? 0 : (c.getInt(4) + 1)) : mPlayer.getDc_3B() );
+			mPlayer.setDc_SS(mPlayer.getDc_SS() == 0 ? (c.isNull(5) ? 0 : (c.getInt(5) + 1)) : mPlayer.getDc_SS() );
+			mPlayer.setDc_LF(mPlayer.getDc_LF() == 0 ? (c.isNull(6) ? 0 : (c.getInt(6) + 1)) : mPlayer.getDc_LF() );
+			mPlayer.setDc_CF(mPlayer.getDc_CF() == 0 ? (c.isNull(7) ? 0 : (c.getInt(7) + 1)) : mPlayer.getDc_CF() );
+			mPlayer.setDc_RF(mPlayer.getDc_RF() == 0 ? (c.isNull(8) ? 0 : (c.getInt(8) + 1)) : mPlayer.getDc_RF() );
+			mPlayer.setBattingOrder(mPlayer.getBattingOrder() == -1 ? (c.isNull(9) ? 0 : (c.getInt(9) + 1)) : mPlayer.getBattingOrder() );
+		} else {
+			mPlayer.setDc_P(mPlayer.getDc_P() == 0 ? 0 : mPlayer.getDc_P() );
+			mPlayer.setDc_C(mPlayer.getDc_C() == 0 ? 0 : mPlayer.getDc_C() );
+			mPlayer.setDc_1B(mPlayer.getDc_1B() == 0 ? 0 : mPlayer.getDc_1B() );
+			mPlayer.setDc_2B(mPlayer.getDc_2B() == 0 ? 0 : mPlayer.getDc_2B() );
+			mPlayer.setDc_3B(mPlayer.getDc_3B() == 0 ? 0 : mPlayer.getDc_3B() );
+			mPlayer.setDc_SS(mPlayer.getDc_SS() == 0 ? 0 : mPlayer.getDc_SS() );
+			mPlayer.setDc_LF(mPlayer.getDc_LF() == 0 ? 0 : mPlayer.getDc_LF() );
+			mPlayer.setDc_CF(mPlayer.getDc_CF() == 0 ? 0 : mPlayer.getDc_CF() );
+			mPlayer.setDc_RF(mPlayer.getDc_RF() == 0 ? 0 : mPlayer.getDc_RF() );
+			mPlayer.setBattingOrder(mPlayer.getBattingOrder() == -1 ? 0 : mPlayer.getBattingOrder() );
+		}
 		
 	}
 

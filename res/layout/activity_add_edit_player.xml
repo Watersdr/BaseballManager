@@ -48,7 +48,7 @@
         android:text="@string/number" />
 
     <EditText
-        android:id="@+id/number"
+        android:id="@+id/player_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

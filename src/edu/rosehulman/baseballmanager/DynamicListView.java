@@ -16,6 +16,8 @@
 
 package edu.rosehulman.baseballmanager;
 
+import java.util.ArrayList;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -37,8 +39,6 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 
 /**
  * The dynamic listview is an extension of listview that supports cell dragging
@@ -67,6 +67,7 @@ public class DynamicListView extends ListView {
     private final int MOVE_DURATION = 150;
     private final int LINE_THICKNESS = 15;
 
+    public ArrayList<String> mPlayerNameList;
     public ArrayList<Player> mPlayerList;
 
     private int mLastEventY = -1;
@@ -94,6 +95,8 @@ public class DynamicListView extends ListView {
 
     private boolean mIsWaitingForScrollFinish = false;
     private int mScrollState = OnScrollListener.SCROLL_STATE_IDLE;
+    
+    private boolean swapped = false;
 
     public DynamicListView(Context context) {
         super(context);
@@ -128,7 +131,7 @@ public class DynamicListView extends ListView {
 
                     int position = pointToPosition(mDownX, mDownY);
                     int itemNum = position - getFirstVisiblePosition();
-
+        			
                     View selectedView = getChildAt(itemNum);
                     mMobileItemId = getAdapter().getItemId(position);
                     mHoverCell = getAndAddHoverView(selectedView);
@@ -200,7 +203,7 @@ public class DynamicListView extends ListView {
      */
     private void updateNeighborViewsForID(long itemID) {
         int position = getPositionForID(itemID);
-        StableArrayAdapter adapter = ((StableArrayAdapter)getAdapter());
+        StablePlayerAdapter adapter = ((StablePlayerAdapter)getAdapter());
         mAboveItemId = adapter.getItemId(position - 1);
         mBelowItemId = adapter.getItemId(position + 1);
     }
@@ -208,7 +211,7 @@ public class DynamicListView extends ListView {
     /** Retrieves the view in the list corresponding to itemID */
     public View getViewForID (long itemID) {
         int firstVisiblePosition = getFirstVisiblePosition();
-        StableArrayAdapter adapter = ((StableArrayAdapter)getAdapter());
+        StablePlayerAdapter adapter = ((StablePlayerAdapter)getAdapter());
         for(int i = 0; i < getChildCount(); i++) {
             View v = getChildAt(i);
             int position = firstVisiblePosition + i;
@@ -278,6 +281,10 @@ public class DynamicListView extends ListView {
                 break;
             case MotionEvent.ACTION_UP:
                 touchEventsEnded();
+                if (swapped) {
+                	((StablePlayerAdapter) getAdapter()).saveState(mPlayerList);
+                    swapped = false;
+                }
                 break;
             case MotionEvent.ACTION_CANCEL:
                 touchEventsCancelled();
@@ -332,7 +339,9 @@ public class DynamicListView extends ListView {
                 return;
             }
 
+            swapElements(mPlayerNameList, originalItem, getPositionForView(switchView));
             swapElements(mPlayerList, originalItem, getPositionForView(switchView));
+            swapped = true;
 
             ((BaseAdapter) getAdapter()).notifyDataSetChanged();
 
@@ -500,9 +509,14 @@ public class DynamicListView extends ListView {
         return false;
     }
 
-    public void setCheeseList(ArrayList<Player> playerList) {
+    public void setPlayerNameList(ArrayList<String> playerList) {
+    	mPlayerNameList = playerList;
+    }
+    
+    public void setPlayerList(ArrayList<Player> playerList) {
     	mPlayerList = playerList;
     }
+
 
     /**
      * This scroll listener is added to the listview in order to handle cell swapping
