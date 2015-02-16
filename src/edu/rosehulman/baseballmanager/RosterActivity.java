@@ -1,9 +1,12 @@
 package edu.rosehulman.baseballmanager;
 
+import java.util.ArrayList;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,18 +15,30 @@ import android.view.MenuItem;
 public class RosterActivity extends Activity {
 
 	private ActionBar.Tab Tab1, Tab2;
-	private Fragment lineupFragment, fragmentTab2;
+	private Fragment lineupFragment, depthChartFragment;
 	private long teamID;
 	private static final int REQUEST_PLAYER_ADDEDIT = 1;
+
+	private PlayerDataAdapter mPlayerDataAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_roster);
 
+		mPlayerDataAdapter = new PlayerDataAdapter(this);
+		mPlayerDataAdapter.open();
+		Cursor c = mPlayerDataAdapter.getTeamPlayers(teamID);
+		
+		ArrayList<Player> players = new ArrayList<Player>();
+		while(c.moveToNext()){
+        	Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
+        	players.add(p);
+        }
+
 		teamID = getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1);
-		lineupFragment = new LineupFragment(teamID);
-		fragmentTab2 = new DepthChartFragment();
+		lineupFragment = new LineupFragment(teamID, players);
+		depthChartFragment = new DepthChartFragment(teamID, players);
  
 		ActionBar actionBar = getActionBar();
  
@@ -36,7 +51,7 @@ public class RosterActivity extends Activity {
  
 		// Set Tab Listeners
 		Tab1.setTabListener(new TabListener(lineupFragment));
-		Tab2.setTabListener(new TabListener(fragmentTab2));
+		Tab2.setTabListener(new TabListener(depthChartFragment));
  
 		// Add tabs to actionbar
 		actionBar.addTab(Tab1);
@@ -71,6 +86,7 @@ public class RosterActivity extends Activity {
             case REQUEST_PLAYER_ADDEDIT:
                 if (resultCode == Activity.RESULT_OK){
                 	((LineupFragment) lineupFragment).updateLineup();
+                	((DepthChartFragment) depthChartFragment).updateDepthChart();
                     Log.d(SplashScreen.BM, "Result ok!");
                 } 
                 else {

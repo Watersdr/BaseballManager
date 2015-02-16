@@ -28,12 +28,14 @@ public class LineupFragment extends Fragment {
 	private StablePlayerAdapter mCursorAdapter;
 	private DynamicListView mlistView;
     private long mSelectedPlayerID;
+    private ArrayList<Player> players;
     
 	private static final int REQUEST_PLAYER_ADDEDIT = 1;
 	
-	public LineupFragment(long teamID) {
+	public LineupFragment(long teamID, ArrayList<Player> playerList) {
 		super();
 		this.teamID = teamID;
+		this.players = playerList;
 		mPlayerDataAdapter = new PlayerDataAdapter(this.getActivity());
 		mPlayerDataAdapter.open();
 	}
@@ -41,21 +43,17 @@ public class LineupFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		View v = inflater.inflate(R.layout.activity_lineup, container, false);
-		
+		View v = inflater.inflate(R.layout.activity_lineup, container, false);		
 		mlistView = (DynamicListView) v.findViewById(R.id.lineup_listview);
         
-        Cursor c = mPlayerDataAdapter.getTeamPlayers(teamID);
-        
-        ArrayList<Player> players = new ArrayList<Player>();
         ArrayList<String> playerNames = new ArrayList<String>();
-        while(c.moveToNext()) {
-        	Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
-        	players.add(p);
-        	playerNames.add(p.getFName() + " " + p.getLName());
+        for(int i = 0; i < players.size(); i++){
+        	//Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
+        	//players.add(p);
+        	playerNames.add(players.get(i).getFName() + " " + players.get(i).getLName());
         }
         
-		mCursorAdapter = new StablePlayerAdapter(getActivity(), R.layout.text_view, players, playerNames, mPlayerDataAdapter);
+		mCursorAdapter = new StablePlayerAdapter(getActivity(), R.layout.text_view, players, playerNames, mPlayerDataAdapter, StablePlayerAdapter.BATTING_ORDER);
 		
 		mlistView.setPlayerNameList(playerNames);
 		mlistView.setPlayerList(players);
@@ -77,7 +75,7 @@ public class LineupFragment extends Fragment {
 	    	playerNames.add(p.getFName() + " " + p.getLName());
 	    }
 	    
-		mCursorAdapter = new StablePlayerAdapter(getActivity(), R.layout.text_view, players, playerNames, mPlayerDataAdapter);
+		mCursorAdapter = new StablePlayerAdapter(getActivity(), R.layout.text_view, players, playerNames, mPlayerDataAdapter, StablePlayerAdapter.BATTING_ORDER);
 		
 		mlistView.setPlayerNameList(playerNames);
 		mlistView.setPlayerList(players);

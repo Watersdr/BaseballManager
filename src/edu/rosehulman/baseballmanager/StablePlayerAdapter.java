@@ -29,17 +29,30 @@ import android.widget.Toast;
 
 public class StablePlayerAdapter extends ArrayAdapter<String> {
 
-    final int INVALID_ID = -1;
+    public static final int BATTING_ORDER = 0;
+    public static final int DC_P = 1;
+    public static final int DC_C = 2;
+    public static final int DC_1B = 3;
+    public static final int DC_2B = 4;
+    public static final int DC_3B = 5;
+    public static final int DC_SS = 6;
+    public static final int DC_LF = 7;
+    public static final int DC_CF = 8;
+    public static final int DC_RF = 9;
+    
+	final int INVALID_ID = -1;
 	private PlayerDataAdapter mPlayerDataAdapter;
+	private int position;
 
     HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 
-    public StablePlayerAdapter(Context context, int textViewResourceId, List<Player> players, List<String> playerNames, PlayerDataAdapter playerDataAdapter) {
+    public StablePlayerAdapter(Context context, int textViewResourceId, List<Player> players, List<String> playerNames, PlayerDataAdapter playerDataAdapter, int position) {
         super(context, textViewResourceId, playerNames);
         for (int i = 0; i < players.size(); ++i) {
             mIdMap.put(playerNames.get(i), (int) players.get(i).getID());
         }
         mPlayerDataAdapter = playerDataAdapter;
+        this.position = position;
     }
 
     @Override
@@ -52,11 +65,71 @@ public class StablePlayerAdapter extends ArrayAdapter<String> {
     }
     
     public void saveState(ArrayList<Player> players) {
-    	for (int i = 0; i < players.size(); i++) {
-    		players.get(i).setBattingOrder(i);
-        	mPlayerDataAdapter.updatePlayer(players.get(i));
+    	switch (this.position) {
+    	case BATTING_ORDER:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setBattingOrder(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_P:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_P(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_C:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_C(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_1B:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_1B(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_2B:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_2B(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_3B:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_3B(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_SS:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_SS(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_LF:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_LF(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_CF:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_CF(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
+    	case DC_RF:
+    		for (int i = 0; i < players.size(); i++) {
+        		players.get(i).setDc_RF(i);
+            	mPlayerDataAdapter.updatePlayer(players.get(i));
+        	}
+    		break;
     	}
-    	Toast.makeText(getContext(), "Line-up Saved!", Toast.LENGTH_SHORT).show();
+    		
+    	
+    	Toast.makeText(getContext(), "Order Saved!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
