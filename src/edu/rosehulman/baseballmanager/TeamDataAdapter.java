@@ -39,6 +39,15 @@ public class TeamDataAdapter {
 	 	}
 	 	return null;
 	}
+	public long getTeamID(String name) {
+	 	String[] projection = new String[] { KEY_ID };
+	 	String selection = KEY_NAME + " = " + name;
+	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_NAME + " DESC");
+	 	if (c != null && c.moveToFirst()) {
+	       	return c.getInt(c.getColumnIndexOrThrow(KEY_ID));
+	 	}
+	 	return -1;
+	}
 	 
 	private Team getTeamFromCursor(Cursor c) {
 		Team t = new Team();

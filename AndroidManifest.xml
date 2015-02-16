@@ -67,11 +67,11 @@
             android:label="@string/title_activity_depth_chart" >
         </activity>
         <activity
-            android:name=".UpcomingGamesActivity"
+            android:name=".UpcomingGamesFragment"
             android:label="@string/title_activity_upcoming_games" >
         </activity>
         <activity
-            android:name=".PreviousGamesActivity"
+            android:name=".PreviousGamesFragment"
             android:label="@string/title_activity_previous_games" >
         </activity>
         <activity

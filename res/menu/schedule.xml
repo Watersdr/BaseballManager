@@ -3,9 +3,10 @@
     tools:context="edu.rosehulman.baseballmanager.ScheduleActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/add_game"
         android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_new"
+        android:title="@string/add_game"/>
 
 </menu>
