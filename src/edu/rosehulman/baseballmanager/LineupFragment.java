@@ -9,7 +9,6 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ActionMode;
@@ -23,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class LineupFragment extends Fragment {
+	private OnUpdateRosterListener listener;
 	private long teamID;
 	private PlayerDataAdapter mPlayerDataAdapter;
 	private StablePlayerAdapter mCursorAdapter;
@@ -41,6 +41,16 @@ public class LineupFragment extends Fragment {
 	}
 
 	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			listener = (OnUpdateRosterListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString() + " must implement OnUpdateRosterListener");
+		}
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		View v = inflater.inflate(R.layout.activity_lineup, container, false);		
@@ -48,8 +58,6 @@ public class LineupFragment extends Fragment {
         
         ArrayList<String> playerNames = new ArrayList<String>();
         for(int i = 0; i < players.size(); i++){
-        	//Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
-        	//players.add(p);
         	playerNames.add(players.get(i).getFName() + " " + players.get(i).getLName());
         }
         
@@ -64,16 +72,12 @@ public class LineupFragment extends Fragment {
 		return v;
 	}
 	
-	public void updateLineup() {
-		Cursor c = mPlayerDataAdapter.getTeamPlayers(teamID);
-    
-	    ArrayList<Player> players = new ArrayList<Player>();
+	public void updateLineup(ArrayList<Player> players) {
+	    this.players = players;
 	    ArrayList<String> playerNames = new ArrayList<String>();
-	    while(c.moveToNext()) {
-	    	Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
-	    	players.add(p);
-	    	playerNames.add(p.getFName() + " " + p.getLName());
-	    }
+        for(int i = 0; i < players.size(); i++){
+        	playerNames.add(players.get(i).getFName() + " " + players.get(i).getLName());
+        }
 	    
 		mCursorAdapter = new StablePlayerAdapter(getActivity(), R.layout.text_view, players, playerNames, mPlayerDataAdapter, StablePlayerAdapter.BATTING_ORDER);
 		
@@ -88,7 +92,6 @@ public class LineupFragment extends Fragment {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			mSelectedPlayerID = id;
-			
 			getActivity().startActionMode(mActionModeCallback);
 		}		
 	};
@@ -149,7 +152,7 @@ public class LineupFragment extends Fragment {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						mPlayerDataAdapter.removePlayer(mSelectedPlayerID);
-						updateLineup();
+						listener.updateRoster();
 					}
 				});
 				builder.setNegativeButton(android.R.string.cancel, null);
@@ -166,7 +169,7 @@ public class LineupFragment extends Fragment {
         switch (requestCode) {
             case REQUEST_PLAYER_ADDEDIT:
                 if (resultCode == Activity.RESULT_OK){
-                	updateLineup();
+                	listener.updateRoster();
                     Log.d(SplashScreen.BM, "Result ok!");
                 } 
                 else {

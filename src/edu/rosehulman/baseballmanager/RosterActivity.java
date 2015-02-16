@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class RosterActivity extends Activity {
+public class RosterActivity extends Activity  implements OnUpdateRosterListener {
 
 	private ActionBar.Tab Tab1, Tab2;
 	private Fragment lineupFragment, depthChartFragment;
@@ -28,6 +28,8 @@ public class RosterActivity extends Activity {
 
 		mPlayerDataAdapter = new PlayerDataAdapter(this);
 		mPlayerDataAdapter.open();
+
+		teamID = getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1);
 		Cursor c = mPlayerDataAdapter.getTeamPlayers(teamID);
 		
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -35,8 +37,6 @@ public class RosterActivity extends Activity {
         	Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
         	players.add(p);
         }
-
-		teamID = getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1);
 		lineupFragment = new LineupFragment(teamID, players);
 		depthChartFragment = new DepthChartFragment(teamID, players);
  
@@ -85,8 +85,7 @@ public class RosterActivity extends Activity {
         switch (requestCode) {
             case REQUEST_PLAYER_ADDEDIT:
                 if (resultCode == Activity.RESULT_OK){
-                	((LineupFragment) lineupFragment).updateLineup();
-                	((DepthChartFragment) depthChartFragment).updateDepthChart();
+                	updateRoster();
                     Log.d(SplashScreen.BM, "Result ok!");
                 } 
                 else {
@@ -98,4 +97,18 @@ public class RosterActivity extends Activity {
                 break;
         }
     }
+
+	@Override
+	public void updateRoster() {
+		Cursor c = mPlayerDataAdapter.getTeamPlayers(teamID);
+		
+		ArrayList<Player> players = new ArrayList<Player>();
+		while(c.moveToNext()){
+        	Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
+        	players.add(p);
+        }
+
+    	((LineupFragment) lineupFragment).updateLineup(players);
+    	((DepthChartFragment) depthChartFragment).updateDepthChart(players);
+	}
 }
