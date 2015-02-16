@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/enter_home_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/home_team_edittext"
+        android:text="@string/home_team" />
+
+    <EditText
+        android:id="@+id/home_team_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enter_home_team"
+        android:inputType="text"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/enter_away_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/away_team_edittext"
+        android:layout_below="@id/home_team_edittext"
+        android:text="@string/away_team" />
+
+    <EditText
+        android:id="@+id/away_team_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enter_away_team"
+        android:inputType="text"
+        android:ems="10" />
+    
+    <TextView
+        android:id="@+id/date_of_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/away_team_edittext"
+        android:text="@string/date" />
+
+    <DatePicker
+        android:id="@+id/date_of_game_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_of_game" />
+
+    <TextView
+        android:id="@+id/time_of_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_of_game_picker"
+        android:text="@string/time" />
+
+    <TimePicker
+        android:id="@+id/time_of_game_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time_of_game" />
+
+    <Button
+        android:id="@+id/save_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time_of_game_picker"
+		android:layout_centerHorizontal="true"
+        android:text="@string/save" />
+
+</RelativeLayout>

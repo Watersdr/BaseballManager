@@ -1,5 +1,8 @@
 package edu.rosehulman.baseballmanager;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -80,5 +83,16 @@ public class GameDataAdapter {
 	public Cursor getGamesCursor() {
 		String[] projection = new String[] { KEY_ID, KEY_GAME_DATE, KEY_HOME_ID, KEY_AWAY_ID };
 	 	return mDatabase.query(TABLE_NAME, projection, null, null, null, null, KEY_GAME_DATE + " DESC");
+	}
+	
+	public Cursor getUpcomingGamesCursor(long teamID) {
+		String[] projection = new String[] { KEY_ID, KEY_GAME_DATE, KEY_HOME_ID, KEY_AWAY_ID };
+		String selection = KEY_GAME_DATE + " > date(\'now\') AND (" + KEY_AWAY_ID + " = " + teamID + " OR " + KEY_HOME_ID + " = " + teamID + ")";
+		return mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_GAME_DATE + " DESC");
+	}
+	public Cursor getPreviousGamesCursor(long teamID) {
+		String[] projection = new String[] { KEY_ID, KEY_GAME_DATE, KEY_HOME_ID, KEY_AWAY_ID };
+		String selection = KEY_GAME_DATE + " < date(\'now\') AND (" + KEY_AWAY_ID + " = " + teamID + " OR " + KEY_HOME_ID + " = " + teamID + ")";
+		return mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_GAME_DATE + " DESC");
 	}
 }

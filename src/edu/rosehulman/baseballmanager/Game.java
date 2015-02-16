@@ -1,6 +1,8 @@
 package edu.rosehulman.baseballmanager;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public class Game {
 	private Date gameDate;
@@ -14,8 +16,9 @@ public class Game {
 		this.awayID = awayID;
 	}
 
-	@SuppressWarnings("deprecation")
-	public String getGameDate() { return gameDate.toLocaleString(); }
+	public String getGameDate() { 
+		SimpleDateFormat f = new SimpleDateFormat("MM/DD/YYYY HH:MM");
+		return f.format(gameDate); }
 
 	public long getID() { return id; }
     

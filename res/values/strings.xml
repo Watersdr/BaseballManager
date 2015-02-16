@@ -72,5 +72,17 @@
     <string name="er">ER</string>
     <string name="era">ERA</string>
     <string name="team_name_empty_string">Team Name</string>
+    <string name="no_upcoming_games">No upcoming games</string>
+    <string name="no_date">MM/DD/YYYY</string>
+    <string name="team_1">Team 1</string>
+    <string name="team_2">Team 2</string>
+    <string name="time">Time</string>
+    <string name="home_team">Home Team</string>
+    <string name="away_team">Away Team</string>
+    <string name="date">Date</string>
+    <string name="add_game">Add Game</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="recap">Recap</string>
 
 </resources>
