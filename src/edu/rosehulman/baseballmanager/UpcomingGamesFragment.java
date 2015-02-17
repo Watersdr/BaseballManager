@@ -28,6 +28,7 @@ public class UpcomingGamesFragment extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		View v = inflater.inflate(R.layout.activity_upcoming_games, container, false);
 		
 		Cursor c = mGameDataAdapter.getUpcomingGamesCursor(teamID);

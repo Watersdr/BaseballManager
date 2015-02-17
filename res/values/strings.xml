@@ -18,6 +18,7 @@
     <string name="title_activity_previous_games">Previous Games</string>
     <string name="title_activity_batting_defense_stats">Batting / Defense Statistics</string>
     <string name="title_activity_pitching_stats">Pitching Statistics</string>
+    <string name="title_activity_add_game">Add Game</string>
     <!-- Menu Options -->
     <string name="action_settings">Settings</string>
     <string name="add_player">Add Player</string>
@@ -84,5 +85,7 @@
     <string name="_1">1</string>
     <string name="_2">2</string>
     <string name="recap">Recap</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
 
 </resources>

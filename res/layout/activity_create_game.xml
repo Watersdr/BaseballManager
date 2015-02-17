@@ -37,38 +37,32 @@
         android:layout_below="@id/enter_away_team"
         android:inputType="text"
         android:ems="10" />
+
+    <Button
+        android:id="@+id/date_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/away_team_edittext"
+        android:layout_toLeftOf="@+id/save_game_button"
+        android:text="@string/select_date" />
+
+    <Button
+        android:id="@+id/time_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/away_team_edittext"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/save_game_button"
+        android:text="@string/select_time" />
+
     
-    <TextView
-        android:id="@+id/date_of_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/away_team_edittext"
-        android:text="@string/date" />
-
-    <DatePicker
-        android:id="@+id/date_of_game_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/date_of_game" />
-
-    <TextView
-        android:id="@+id/time_of_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/date_of_game_picker"
-        android:text="@string/time" />
-
-    <TimePicker
-        android:id="@+id/time_of_game_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/time_of_game" />
-
+    
     <Button
         android:id="@+id/save_game_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/time_of_game_picker"
+		android:layout_alignParentBottom="true"
 		android:layout_centerHorizontal="true"
         android:text="@string/save" />
 
