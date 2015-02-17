@@ -9,13 +9,15 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.TextView;
 
-public class PositionSpinner extends Spinner {
+public class PositionSpinner extends TextView {
 	private ArrayList<Player> players;
 	private ArrayList<String> playerNames;
 	private int position;
@@ -28,7 +30,9 @@ public class PositionSpinner extends Spinner {
 		
 		@Override
 		public void onClick(View v) {
-			showDCDialog();
+			if (players.size() > 0) {
+				showDCDialog();
+			}
 		}
 	};
 	
@@ -43,20 +47,37 @@ public class PositionSpinner extends Spinner {
 		this.mActivity = activity;
 		this.mPlayerDataAdapter = adapter;
 		this.setOnClickListener(mOnClickListener);
+		
+		String mystring = new String("<No Players>");
+		SpannableString content = new SpannableString(mystring);
+		content.setSpan(new UnderlineSpan(), 0, mystring.length(), 0);
+		this.setText(content);
 	}
 	
 	public void clearSpinner() {
 		this.dcOrder = new HashMap<Long, Integer>();
 		players = new ArrayList<Player>();
+		
+		String mystring = new String("<No Players>");
+		SpannableString content = new SpannableString(mystring);
+		content.setSpan(new UnderlineSpan(), 0, mystring.length(), 0);
+		this.setText(content);
 	}
 	
 	public void addPlayer(Player p, int order) {
+		boolean added = false;
 		for (int i = 0; i < players.size(); i++) {
-			if (dcOrder.get(players.get(i)) > order) {
+			if (dcOrder.get(players.get(i).getID()) > order) {
 				players.add(i, p);
 				dcOrder.put(p.getID(), order);
+				added = true;
 				break;
 			}
+		}
+		
+		if (!added) {
+			players.add(p);
+			dcOrder.put(p.getID(), order);
 		}
 		
 		playerNames = new ArrayList<String>();
@@ -65,7 +86,10 @@ public class PositionSpinner extends Spinner {
         }
         
         mPlayerAdapter = new StablePlayerAdapter(mActivity, R.layout.text_view, players, playerNames, mPlayerDataAdapter, position);
-        this.setAdapter(mPlayerAdapter);
+        String mystring = new String(playerNames.get(0));
+		SpannableString content = new SpannableString(mystring);
+		content.setSpan(new UnderlineSpan(), 0, mystring.length(), 0);
+		this.setText(content);
 	}
 	
 	private void showDCDialog() {
@@ -84,6 +108,15 @@ public class PositionSpinner extends Spinner {
 				
 			    builder.setView(dialogView);
 			    return builder.create();
+			}
+			
+			@Override
+			public void onDestroy() {
+				super.onDestroy();
+				String mystring = new String(playerNames.get(0));
+				SpannableString content = new SpannableString(mystring);
+				content.setSpan(new UnderlineSpan(), 0, mystring.length(), 0);
+				setText(content);
 			}
 		};
 		df.show(mActivity.getFragmentManager(), "DC Dialog");
