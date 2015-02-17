@@ -98,7 +98,7 @@ public class PositionSpinner extends TextView {
 			public Dialog onCreateDialog(Bundle b) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			    LayoutInflater inflater = getActivity().getLayoutInflater();
-			    View dialogView = inflater.inflate(R.layout.activity_lineup, null);
+			    View dialogView = inflater.inflate(R.layout.fragment_lineup, null);
 			    
 				DynamicListView mlistView = (DynamicListView) dialogView.findViewById(R.id.lineup_listview);				
 				mlistView.setPlayerNameList(playerNames);
