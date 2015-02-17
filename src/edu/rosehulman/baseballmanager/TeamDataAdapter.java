@@ -41,7 +41,7 @@ public class TeamDataAdapter {
 	}
 	public long getTeamID(String name) {
 	 	String[] projection = new String[] { KEY_ID };
-	 	String selection = KEY_NAME + " = " + name;
+	 	String selection = KEY_NAME + " = \'" + name + "\'";
 	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_NAME + " DESC");
 	 	if (c != null && c.moveToFirst()) {
 	       	return c.getInt(c.getColumnIndexOrThrow(KEY_ID));

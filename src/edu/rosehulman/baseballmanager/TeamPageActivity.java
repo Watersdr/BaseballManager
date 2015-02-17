@@ -65,6 +65,7 @@ public class TeamPageActivity extends Activity {
 
 	protected void makeScheduleIntent() {
 		Intent i = new Intent(this, ScheduleActivity.class);
+		i.putExtra(TeamDataAdapter.KEY_ID, team.getID());
 		startActivity(i);
 	}
 

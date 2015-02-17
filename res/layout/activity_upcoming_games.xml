@@ -12,7 +12,7 @@
         android:padding="10dp" />
 
     <TextView
-        android:id="@+id/no_game_text_view"
+        android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"

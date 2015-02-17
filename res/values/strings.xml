@@ -87,5 +87,6 @@
     <string name="recap">Recap</string>
     <string name="select_date">Select Date</string>
     <string name="select_time">Select Time</string>
+    <string name="no_previous_games">No previous games</string>
 
 </resources>

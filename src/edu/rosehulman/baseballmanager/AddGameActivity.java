@@ -10,6 +10,7 @@ import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -40,6 +41,27 @@ public class AddGameActivity extends Activity {
 		gameDataAdapter.open();
 
 		Button saveButton = (Button) findViewById(R.id.save_game_button);
+		mDateButton = (Button) findViewById(R.id.date_button);
+		mTimeButton = (Button) findViewById(R.id.time_button);
+		Log.d(SplashScreen.BM, mDateButton.getText().toString());
+
+		mDateButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				DialogFragment f = new DatePickerFragment();
+				f.show(getFragmentManager(), "time picker");
+			}
+		});
+
+		mTimeButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				DialogFragment f = new TimePickerFragment();
+				f.show(getFragmentManager().beginTransaction(), "date picker");
+			}
+		});
 
 		saveButton.setOnClickListener(new OnClickListener() {
 
@@ -47,29 +69,9 @@ public class AddGameActivity extends Activity {
 			public void onClick(View v) {
 				EditText homeTeam = (EditText) findViewById(R.id.home_team_edittext);
 				EditText awayTeam = (EditText) findViewById(R.id.away_team_edittext);
-				mDateButton = (Button) findViewById(R.id.date_button);
-				mTimeButton = (Button) findViewById(R.id.time_button);
-
-				mDateButton.setOnClickListener(new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						DialogFragment f = new DatePickerFragment();
-						f.show(getFragmentManager(), "time picker");
-					}
-				});
-
-				mTimeButton.setOnClickListener(new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						DialogFragment f = new TimePickerFragment();
-						f.show(getFragmentManager(), "date picker");
-					}
-				});
 
 				@SuppressWarnings("deprecation")
-				Date setDate = new Date(yr, mon, date, hour, min);
+				Date setDate = new Date(yr-1900, mon, date, hour, min);
 				String homeTeamName = homeTeam.getText().toString();
 				String awayTeamName = awayTeam.getText().toString();
 
@@ -123,7 +125,7 @@ public class AddGameActivity extends Activity {
 			yr = year;
 			mon = month;
 			date = day;
-			
+
 			mDateButton.setText("" + mon + "/" + day + "/" + yr);
 		}
 	}
