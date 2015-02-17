@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class GameArrayAdapter extends ArrayAdapter<Game> {
 
 	private int layoutResource;
+	
 
 	public GameArrayAdapter(Context context, int resource, List<Game> games) {
 		super(context, R.layout.upcoming_game_item, R.id.team1_textview, games);
@@ -22,7 +23,7 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		if (layoutResource == R.layout.upcoming_game_item) {
-			View v = inflater.inflate(R.layout.upcoming_game_item, parent);
+			View v = inflater.inflate(R.layout.upcoming_game_item, null);
 
 			Game game = getItem(position);
 
@@ -35,8 +36,10 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
 
 			String[] fullDate = game.getGameDate().split(" ");
 
-			date.setText(fullDate[0]);
-			time.setText(fullDate[1]);
+			date.setText(fullDate[0] + " " + fullDate[1] + " " + fullDate[2]);
+			String[] fullTimeString = fullDate[3].split(":");
+			String timeString = fullTimeString[0] + ":" + fullTimeString[1] + fullDate[4];
+			time.setText(timeString);
 
 			TeamDataAdapter adapter = new TeamDataAdapter(getContext());
 			adapter.open();
@@ -48,7 +51,7 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
 			return v;
 		}
 		else {
-			View v = inflater.inflate(R.layout.previous_game_item, parent);
+			View v = inflater.inflate(R.layout.previous_game_item, null);
 
 			Game game = getItem(position);
 
@@ -69,8 +72,8 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
 
 			String[] fullDate = game.getGameDate().split(" ");
 
-			date.setText(fullDate[0]);
-
+			date.setText(fullDate[0] + " " + fullDate[1] + " " + fullDate[2]);
+			
 			TeamDataAdapter adapter = new TeamDataAdapter(getContext());
 			adapter.open();
 			Team homeTeam = adapter.getTeam(game.getHomeID());

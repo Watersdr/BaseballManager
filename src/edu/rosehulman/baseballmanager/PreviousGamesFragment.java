@@ -27,7 +27,7 @@ public class PreviousGamesFragment extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.activity_upcoming_games, container, false);
+		View v = inflater.inflate(R.layout.activity_previous_games, container, false);
 		
 		Cursor c = mGameDataAdapter.getPreviousGamesCursor(teamID);
 		ArrayList<Game> games = new ArrayList<Game>();
