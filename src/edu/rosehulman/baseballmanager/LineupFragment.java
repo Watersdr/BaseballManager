@@ -74,17 +74,19 @@ public class LineupFragment extends Fragment {
 	
 	public void updateLineup(ArrayList<Player> players) {
 	    this.players = players;
-	    ArrayList<String> playerNames = new ArrayList<String>();
-        for(int i = 0; i < players.size(); i++){
-        	playerNames.add(players.get(i).getFName() + " " + players.get(i).getLName());
-        }
+        
+	    if (getActivity() != null) {
+		    ArrayList<String> playerNames = new ArrayList<String>();
+	        for(int i = 0; i < players.size(); i++){
+	        	playerNames.add(players.get(i).getFName() + " " + players.get(i).getLName());
+	        }
 	    
-		mCursorAdapter = new StablePlayerAdapter(getActivity(), R.layout.text_view, players, playerNames, mPlayerDataAdapter, StablePlayerAdapter.BATTING_ORDER);
-		
-		mlistView.setPlayerNameList(playerNames);
-		mlistView.setPlayerList(players);
-		mlistView.setAdapter(mCursorAdapter);
-		mCursorAdapter.notifyDataSetChanged();
+			mCursorAdapter = new StablePlayerAdapter(getActivity(), R.layout.text_view, players, playerNames, mPlayerDataAdapter, StablePlayerAdapter.BATTING_ORDER);		
+			mlistView.setPlayerNameList(playerNames);
+			mlistView.setPlayerList(players);
+			mlistView.setAdapter(mCursorAdapter);
+			mCursorAdapter.notifyDataSetChanged();
+        }
 	}
     
     private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {

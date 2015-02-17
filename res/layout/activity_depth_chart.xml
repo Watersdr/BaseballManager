@@ -9,177 +9,117 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DepthChartFragment" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1" >
 
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-        
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <edu.rosehulman.baseballmanager.DynamicListView
+        <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/center_field_spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"/>
-
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"/>
         
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-    </LinearLayout>
+    </RelativeLayout>
     
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent" 
         android:layout_weight="1">
 
         <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/left_field_spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center" />
-        
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-        
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:textSize="20sp" />
         
         <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/right_field_spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="20sp"/>
         
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1">
-
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        android:layout_weight="1"
+        android:orientation="horizontal">
         
         <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/short_stop_spinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"/>
-        
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+          	android:layout_weight="1"
+            android:textSize="20sp"/>
         
         <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/second_base_spinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" 
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:gravity="center"
+          	android:layout_weight="1"
+            android:textSize="20sp"/>
         
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent" 
         android:layout_weight="1">
 
        <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/third_base_spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center" />
-       
-       <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:textSize="20sp" />
 
         <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/pitcher_spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"/>
-        
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"/>
 
         <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/first_base_spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"/>
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="20sp"/>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1" >
 
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-        
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
         <edu.rosehulman.baseballmanager.PositionSpinner
             android:id="@+id/catcher_spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"/>
 
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-        
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
