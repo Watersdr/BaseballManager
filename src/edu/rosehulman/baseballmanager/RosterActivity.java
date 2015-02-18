@@ -6,7 +6,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -30,13 +29,7 @@ public class RosterActivity extends Activity  implements OnUpdateRosterListener 
 		mPlayerDataAdapter.open();
 
 		teamID = getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1);
-		Cursor c = mPlayerDataAdapter.getTeamPlayers(teamID);
-		
-		ArrayList<Player> players = new ArrayList<Player>();
-		while(c.moveToNext()){
-        	Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
-        	players.add(p);
-        }
+		ArrayList<Player> players = mPlayerDataAdapter.getTeamPlayers(teamID);
 		lineupFragment = new LineupFragment(teamID, players);
 		depthChartFragment = new DepthChartFragment(teamID, players);
  
@@ -99,14 +92,8 @@ public class RosterActivity extends Activity  implements OnUpdateRosterListener 
     }
 
 	@Override
-	public void updateRoster() {
-		Cursor c = mPlayerDataAdapter.getTeamPlayers(teamID);
-		
-		ArrayList<Player> players = new ArrayList<Player>();
-		while(c.moveToNext()){
-        	Player p = mPlayerDataAdapter.getPlayer(c.getLong(0));
-        	players.add(p);
-        }
+	public void updateRoster() {		
+		ArrayList<Player> players = mPlayerDataAdapter.getTeamPlayers(teamID);
 
     	((LineupFragment) lineupFragment).updateLineup(players);
     	((DepthChartFragment) depthChartFragment).updateDepthChart(players);

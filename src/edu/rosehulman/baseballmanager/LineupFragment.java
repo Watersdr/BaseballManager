@@ -53,7 +53,7 @@ public class LineupFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		View v = inflater.inflate(R.layout.activity_lineup, container, false);		
+		View v = inflater.inflate(R.layout.fragment_lineup, container, false);		
 		mlistView = (DynamicListView) v.findViewById(R.id.lineup_listview);
         
         ArrayList<String> playerNames = new ArrayList<String>();

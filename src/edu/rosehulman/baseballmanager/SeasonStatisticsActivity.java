@@ -1,40 +1,43 @@
 package edu.rosehulman.baseballmanager;
 
+import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 
 public class SeasonStatisticsActivity extends Activity {
 
-	/*
-	 * Code for tabs based on Android Tutorials for Beginners
-	 * http://www.learn-android-easily.com/2013/07/android-tabwidget-example.html
-	 */
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		 super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_season_statistics);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_season_statistics);
 
-         // Create the TabHost that will contain the Tabs
-         TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
+		PlayerDataAdapter mPlayerDataAdapter = new PlayerDataAdapter(this);
+		mPlayerDataAdapter.open();
+		PlayerStatsDataAdapter mPlayerStatsDataAdapter = new PlayerStatsDataAdapter(this);
+		mPlayerStatsDataAdapter.open();
 
+		long teamID = getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1);
+		Cursor battingCursor = mPlayerStatsDataAdapter.getBattingDefesnseSeasonStats(teamID);		
+		Cursor pitchingCursor = mPlayerStatsDataAdapter.getPitchingSeasonStats(teamID);	
+		PitchingStatsFragment pitchingStats = new PitchingStatsFragment(pitchingCursor);
+		BattingDefenseStatsFragment battingStats = new BattingDefenseStatsFragment(battingCursor);
 
-         TabSpec tab1 = tabHost.newTabSpec("Batting / Defense Statistics");
-         TabSpec tab2 = tabHost.newTabSpec("Pitching Statistics");
+		ActionBar actionBar = getActionBar();
 
-        // Set the Tab name and Activity
-        // that will be opened when particular Tab will be selected
-         tab1.setIndicator("Batting / Defense Statistics");
-         tab1.setContent(new Intent(this, UpcomingGamesActivity.class));
-         
-         tab2.setIndicator("Pitching Statistics");
-         tab2.setContent(new Intent(this, PreviousGamesActivity.class));
-         
-         // Add the tabs  to the TabHost to display.
-         tabHost.addTab(tab1);
-         tabHost.addTab(tab2);
+		// Create Actionbar Tabs
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+		// Set Tab Icon and Titles
+		ActionBar.Tab Tab1 = actionBar.newTab().setText("Batting / Defense");
+		ActionBar.Tab Tab2 = actionBar.newTab().setText("Pitching");
+
+		// Set Tab Listeners
+		Tab1.setTabListener(new TabListener(battingStats));
+		Tab2.setTabListener(new TabListener(pitchingStats));
+
+		// Add tabs to actionbar
+		actionBar.addTab(Tab1);
+		actionBar.addTab(Tab2);
 	}
 }

@@ -60,6 +60,7 @@ public class TeamPageActivity extends Activity {
 
 	protected void makeStatsIntent() {
 		Intent i = new Intent(this, SeasonStatisticsActivity.class);
+		i.putExtra(TeamDataAdapter.KEY_ID, team.getID());
 		startActivity(i);		
 	}
 
