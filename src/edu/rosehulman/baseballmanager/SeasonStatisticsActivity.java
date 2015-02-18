@@ -2,25 +2,26 @@ package edu.rosehulman.baseballmanager;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 
 public class SeasonStatisticsActivity extends Activity {
-
-	private ActionBar.Tab Tab1, Tab2;
-	
-	/*
-	 * Code for tabs based on Android Tutorials for Beginners
-	 * http://www.learn-android
-	 * -easily.com/2013/07/android-tabwidget-example.html
-	 */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_season_statistics);
 
-		PitchingStatsFragment pitchingStats = new PitchingStatsFragment();
-		BattingDefenseStatsFragment battingStats = new BattingDefenseStatsFragment();
+		PlayerDataAdapter mPlayerDataAdapter = new PlayerDataAdapter(this);
+		mPlayerDataAdapter.open();
+		PlayerStatsDataAdapter mPlayerStatsDataAdapter = new PlayerStatsDataAdapter(this);
+		mPlayerStatsDataAdapter.open();
+
+		long teamID = getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1);
+		Cursor battingCursor = mPlayerStatsDataAdapter.getBattingDefesnseSeasonStats(teamID);		
+		Cursor pitchingCursor = mPlayerStatsDataAdapter.getPitchingSeasonStats(teamID);	
+		PitchingStatsFragment pitchingStats = new PitchingStatsFragment(pitchingCursor);
+		BattingDefenseStatsFragment battingStats = new BattingDefenseStatsFragment(battingCursor);
 
 		ActionBar actionBar = getActionBar();
 
@@ -28,12 +29,12 @@ public class SeasonStatisticsActivity extends Activity {
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Set Tab Icon and Titles
-		Tab1 = actionBar.newTab().setText("Batting / Defense Statistics");
-		Tab2 = actionBar.newTab().setText("Pitching Statistics");
+		ActionBar.Tab Tab1 = actionBar.newTab().setText("Batting / Defense");
+		ActionBar.Tab Tab2 = actionBar.newTab().setText("Pitching");
 
 		// Set Tab Listeners
-		Tab1.setTabListener(new TabListener(pitchingStats));
-		Tab2.setTabListener(new TabListener(battingStats));
+		Tab1.setTabListener(new TabListener(battingStats));
+		Tab2.setTabListener(new TabListener(pitchingStats));
 
 		// Add tabs to actionbar
 		actionBar.addTab(Tab1);

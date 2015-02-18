@@ -1,5 +1,7 @@
 package edu.rosehulman.baseballmanager;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -53,10 +55,15 @@ public class PlayerDataAdapter {
 	 	return null;
 	}
 	
-	public Cursor getTeamPlayers(long teamID) {
+	public ArrayList<Player> getTeamPlayers(long teamID) {
 	 	String[] projection = new String[] { KEY_ID, KEY_TEAM_ID, KEY_F_NAME, KEY_L_NAME, KEY_NUMBER, KEY_DC_C, KEY_DC_P, KEY_DC_1B, KEY_DC_2B, KEY_DC_3B, KEY_DC_SS, KEY_DC_LF, KEY_DC_CF, KEY_DC_RF, KEY_BATTING_ORDER };
 	 	String selection = KEY_TEAM_ID + " = " + teamID;
-	 	return mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_BATTING_ORDER + " ASC");
+	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_BATTING_ORDER + " ASC");
+	 	ArrayList<Player> players = new ArrayList<Player>();
+	 	while(c.moveToNext()) {
+	 		players.add(getPlayerFromCursor(c));
+	 	}
+	 	return players;
 	}
 	 
 	private Player getPlayerFromCursor(Cursor c) {
