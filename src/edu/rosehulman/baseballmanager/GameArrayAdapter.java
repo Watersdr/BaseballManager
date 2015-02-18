@@ -36,10 +36,12 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
 
 			String[] fullDate = game.getGameDate().split(" ");
 
-			date.setText(fullDate[0] + " " + fullDate[1] + " " + fullDate[2]);
-			String[] fullTimeString = fullDate[3].split(":");
-			String timeString = fullTimeString[0] + ":" + fullTimeString[1] + fullDate[4];
-			time.setText(timeString);
+//			date.setText(fullDate[0] + " " + fullDate[1] + " " + fullDate[2]);
+			date.setText(fullDate[0]);
+//			String[] fullTimeString = fullDate[3].split(":");
+//			String timeString = fullTimeString[0] + ":" + fullTimeString[1] + fullDate[4];
+//			time.setText(timeString);
+			time.setText(fullDate[1]);
 
 			TeamDataAdapter adapter = new TeamDataAdapter(getContext());
 			adapter.open();
@@ -72,7 +74,10 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
 
 			String[] fullDate = game.getGameDate().split(" ");
 
-			date.setText(fullDate[0] + " " + fullDate[1] + " " + fullDate[2]);
+//			date.setText(fullDate[0] + " " + fullDate[1] + " " + fullDate[2]);
+			date.setText(fullDate[0]);
+
+
 			
 			TeamDataAdapter adapter = new TeamDataAdapter(getContext());
 			adapter.open();

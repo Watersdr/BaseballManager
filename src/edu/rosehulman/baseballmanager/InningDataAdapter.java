@@ -96,4 +96,10 @@ public class InningDataAdapter {
 	 	String[] projection = new String[] { KEY_ID, KEY_GAME_ID, KEY_INNING, KEY_HOME_RUNS, KEY_AWAY_RUNS, KEY_HOME_HITS, KEY_AWAY_HITS, KEY_HOME_ERRORS, KEY_AWAY_ERRORS };
 	 	return mDatabase.query(TABLE_NAME, projection, null, null, null, null, KEY_GAME_ID + " DESC");
 	}
+	
+	public Cursor getInningsForGame(long gameID) {
+	 	String[] projection = new String[] { KEY_ID, KEY_GAME_ID, KEY_INNING, KEY_HOME_RUNS, KEY_AWAY_RUNS, KEY_HOME_HITS, KEY_AWAY_HITS, KEY_HOME_ERRORS, KEY_AWAY_ERRORS };
+	 	String selection = KEY_GAME_ID + " = " + gameID;
+	 	return mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_INNING + " ASC");
+	}
 }

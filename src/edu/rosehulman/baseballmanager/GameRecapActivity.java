@@ -1,16 +1,36 @@
 package edu.rosehulman.baseballmanager;
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class GameRecapActivity extends Activity {
 
+	private long mGameID;
+//	private RecapBoxScoreArrayAdapter mBoxScoreAdapter;
+//	private RecapLineupArrayAdapter mLineupAdapter;
+//	private RecapPitchingArrayAdapter mPitchingAdapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_recap);
+		
+		Intent i = getIntent();
+		mGameID = i.getLongExtra(GameDataAdapter.KEY_ID, -1);
+		if (mGameID == -1) {
+			Log.d(SplashScreen.BM, "Game ID was -1");
+			finish();
+		}
+		
+//		mBoxScoreAdapter = new RecapBoxScoreArrayAdapter(mGameID);
+//		mLineupAdapter = new RecapLineupArrayAdapter(mGameID);
+//		mPitchingAdapter = new RecapPitchingArrayAdapter(mGameID);
+		
 	}
 
 	@Override

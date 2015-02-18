@@ -21,6 +21,8 @@
             android:id="@+id/team1_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:paddingTop="2dp"
             android:text="@string/team_1"
             android:paddingLeft="5dp"
             android:textSize="15sp" />
@@ -29,7 +31,8 @@
             android:id="@+id/team2_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/team1_textview"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="2dp"
             android:text="@string/team_2"
             android:paddingLeft="5dp"
             android:textSize="15sp" />

@@ -1,5 +1,6 @@
 package edu.rosehulman.baseballmanager;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -17,9 +18,9 @@ public class Game {
 
 	@SuppressWarnings("deprecation")
 	public String getGameDate() { 
-//		SimpleDateFormat f = new SimpleDateFormat("MM/DD/YYYY HH:MM");
-//		return f.format(gameDate);
-		return gameDate.toLocaleString();}
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		return f.format(gameDate);
+}
 
 	public long getID() { return id; }
     
@@ -30,7 +31,12 @@ public class Game {
 	public long getAwayID() { return awayID; }
 
 	@SuppressWarnings("deprecation")
-	public void setGameDate(String gameDate) { this.gameDate = new Date(Date.parse(gameDate)); }
+	public void setGameDate(String gameDate) { 
+		String[] fullDate = gameDate.split(" ");
+		String[] date = fullDate[0].split("-");
+		String[] time = fullDate[1].split(":");
+		this.gameDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]), Integer.parseInt(date[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1])); 
+	}
 
 	public void setHomeID(long homeID) { this.homeID = homeID; }
 

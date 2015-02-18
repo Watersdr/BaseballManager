@@ -3,11 +3,13 @@ package edu.rosehulman.baseballmanager;
 import java.util.ArrayList;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 public class PreviousGamesFragment extends ListFragment {
 	private long teamID;
@@ -38,6 +40,16 @@ public class PreviousGamesFragment extends ListFragment {
 		
 		mGameArrayAdapter = new GameArrayAdapter(getActivity(), R.layout.previous_game_item, games);
 		setListAdapter(mGameArrayAdapter);
+		
 		return v;
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		Intent i = new Intent(getActivity(), GameRecapActivity.class);
+		Game game = (Game) getListAdapter().getItem(position); 
+		i.putExtra(GameDataAdapter.KEY_ID, game.getID());
+		startActivity(i);
 	}
 }
