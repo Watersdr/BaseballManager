@@ -16,7 +16,7 @@ public class PreviousGamesFragment extends ListFragment {
 	private GameDataAdapter mGameDataAdapter;
 	private TeamDataAdapter mTeamDataAdapter;
 	private GameArrayAdapter mGameArrayAdapter;
-	
+
 	public PreviousGamesFragment(long teamID) {
 		super();
 		this.teamID = teamID;
@@ -25,31 +25,49 @@ public class PreviousGamesFragment extends ListFragment {
 		mGameDataAdapter.open();
 		mTeamDataAdapter.open();
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.activity_previous_games, container, false);
-		
+		super.onCreate(savedInstanceState);
+		View v = inflater.inflate(R.layout.activity_previous_games, container,
+				false);
+
 		Cursor c = mGameDataAdapter.getPreviousGamesCursor(teamID);
 		ArrayList<Game> games = new ArrayList<Game>();
 		while (c.moveToNext()) {
 			Game g = mGameDataAdapter.getGame(c.getLong(0));
 			games.add(g);
 		}
-		
-		mGameArrayAdapter = new GameArrayAdapter(getActivity(), R.layout.previous_game_item, games);
+
+		mGameArrayAdapter = new GameArrayAdapter(getActivity(),
+				R.layout.previous_game_item, games);
 		setListAdapter(mGameArrayAdapter);
-		
+
 		return v;
 	}
-	
+
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		Intent i = new Intent(getActivity(), GameRecapActivity.class);
-		Game game = (Game) getListAdapter().getItem(position); 
+		Game game = (Game) getListAdapter().getItem(position);
 		i.putExtra(GameDataAdapter.KEY_ID, game.getID());
 		startActivity(i);
+	}
+
+	public void updateGames() {
+		if (getActivity() != null) {
+			Cursor c = mGameDataAdapter.getPreviousGamesCursor(teamID);
+			ArrayList<Game> games = new ArrayList<Game>();
+			while (c.moveToNext()) {
+				Game g = mGameDataAdapter.getGame(c.getLong(0));
+				games.add(g);
+			}
+
+			mGameArrayAdapter = new GameArrayAdapter(getActivity(),
+					R.layout.previous_game_item, games);
+			setListAdapter(mGameArrayAdapter);
+		}
 	}
 }

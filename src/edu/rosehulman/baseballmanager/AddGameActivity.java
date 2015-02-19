@@ -100,6 +100,7 @@ public class AddGameActivity extends Activity {
 					PlayerStats ps = new PlayerStats(p.getID(), gameID, p.getBattingOrder());
 					mPlayerStatsDataAdapter.addPlayerStats(ps);
 				}
+				setResult(RESULT_OK);
 				finish();
 			}
 		});

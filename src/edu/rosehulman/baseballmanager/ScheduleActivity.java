@@ -58,7 +58,7 @@ public class ScheduleActivity extends Activity {
 		int id = item.getItemId();
 		if (id == R.id.add_game) {
 			Intent i = new Intent(this, AddGameActivity.class);
-			startActivity(i);
+			startActivityForResult(i, REQUEST_ENTER_GAME);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -72,6 +72,7 @@ public class ScheduleActivity extends Activity {
             case REQUEST_ENTER_GAME:
                 if (resultCode == Activity.RESULT_OK){
                 	((UpcomingGamesFragment) upcomingFragment).updateGames();
+                	((PreviousGamesFragment) previousFragment).updateGames();
                     Log.d(SplashScreen.BM, "Result ok! Adding game");
                 } 
                 else {
