@@ -104,5 +104,8 @@
     <string name="inning">Inning %d</string>
     <string name="dummy_score_home">Team1: 0</string>
     <string name="dummy_score_away">Team2: 0</string>
+    <string name="walks">Walks</string>
+    <string name="strikeouts">Strikeouts</string>
+    <string name="at_bats">At Bats</string>
 
 </resources>

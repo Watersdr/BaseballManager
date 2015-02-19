@@ -4,20 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GameRecapActivity extends Activity {
 
 	private long mGameID;
 	private RecapBoxScoreArrayAdapter mBoxScoreAdapter;
+	private PlayerStatsDataAdapter statsAdapter;
+	private PlayerDataAdapter mPlayerDataAdapter;
+	private SimpleCursorAdapter cursorAdapterHomeLineup, cursorAdapterAwayLineup;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +48,12 @@ public class GameRecapActivity extends Activity {
 		
 		GameDataAdapter gameAdapter = new GameDataAdapter(this);
 		TeamDataAdapter teamAdapter = new TeamDataAdapter(this);
-		PlayerStatsDataAdapter statsAdapter = new PlayerStatsDataAdapter(this);
+		statsAdapter = new PlayerStatsDataAdapter(this);
+		mPlayerDataAdapter = new PlayerDataAdapter(this);
 		gameAdapter.open();
 		teamAdapter.open();
 		statsAdapter.open();
+		mPlayerDataAdapter.open();
 		
 		List<String> teamNames = new ArrayList<String>();
 		Game game = gameAdapter.getGame(mGameID);
@@ -61,17 +78,31 @@ public class GameRecapActivity extends Activity {
 		
 		ListView team1LineUpListView = (ListView) findViewById(R.id.recap_team1_lineup_stats);
 		String[] fromColumns = new String[]  {PlayerDataAdapter.KEY_L_NAME, PlayerStatsDataAdapter.KEY_ABS, PlayerStatsDataAdapter.KEY_H, PlayerStatsDataAdapter.KEY_K, PlayerStatsDataAdapter.KEY_BB, PlayerStatsDataAdapter.KEY_E};
-		int[] toTextViews = new int[] {R.id.recap_batter_name, R.id.recap_at_bats, R.id.recap_hits, R.id.recap_strike_outs_batter, R.id.recap_errors};
+		int[] toTextViews = new int[] {R.id.recap_batter_name, R.id.recap_at_bats, R.id.recap_hits, R.id.recap_strike_outs_batter, R.id.recap_walks_batter, R.id.recap_errors};
 		Cursor c = statsAdapter.getHomePlayerStatsForGame(mGameID);
-		SimpleCursorAdapter cursorAdapterHomeLineup = new SimpleCursorAdapter(this, R.layout.lineup_stats_item, c, fromColumns, toTextViews, 0);
+		team1LineUpListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				openStatsDialog(id, true);
+			}
+		});
+		cursorAdapterHomeLineup = new SimpleCursorAdapter(this, R.layout.lineup_stats_item, c, fromColumns, toTextViews, 0);
 		team1LineUpListView.setAdapter(cursorAdapterHomeLineup);
 		Utility.setListViewHeightBasedonChildren(team1LineUpListView);
 		
 		ListView team2LineUpListView = (ListView) findViewById(R.id.recap_team2_lineup_stats);
 		fromColumns = new String[]  {PlayerDataAdapter.KEY_L_NAME, PlayerStatsDataAdapter.KEY_ABS, PlayerStatsDataAdapter.KEY_H, PlayerStatsDataAdapter.KEY_K, PlayerStatsDataAdapter.KEY_BB, PlayerStatsDataAdapter.KEY_E};
-		toTextViews = new int[] {R.id.recap_batter_name, R.id.recap_at_bats, R.id.recap_hits, R.id.recap_strike_outs_batter,R.id.recap_walks_batter, R.id.recap_errors};
+		toTextViews = new int[] {R.id.recap_batter_name, R.id.recap_at_bats, R.id.recap_hits, R.id.recap_strike_outs_batter, R.id.recap_walks_batter, R.id.recap_errors};
 		c = statsAdapter.getAwayPlayerStatsForGame(mGameID);
-		SimpleCursorAdapter cursorAdapterAwayLineup = new SimpleCursorAdapter(this, R.layout.lineup_stats_item, c, fromColumns, toTextViews, 0);
+		team2LineUpListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				openStatsDialog(id, false);
+			}
+		});
+		cursorAdapterAwayLineup = new SimpleCursorAdapter(this, R.layout.lineup_stats_item, c, fromColumns, toTextViews, 0);
 		team2LineUpListView.setAdapter(cursorAdapterAwayLineup);
 		Utility.setListViewHeightBasedonChildren(team2LineUpListView);
 
@@ -92,6 +123,74 @@ public class GameRecapActivity extends Activity {
 		Utility.setListViewHeightBasedonChildren(team2PitchingListView);
 		
 		
+	}
+	
+	private void openStatsDialog(final long id, final boolean homeTeam) {
+		DialogFragment df = new DialogFragment() {
+			@Override
+			public Dialog onCreateDialog(Bundle b) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				
+				final PlayerStats ps = statsAdapter.getPlayerStats(id);
+				
+				LayoutInflater inflater = getActivity().getLayoutInflater();
+			    View dialogView = inflater.inflate(R.layout.dialog_batting_stats, null);
+			    builder.setView(dialogView);
+			    final NumberPicker abPicker = (NumberPicker) dialogView.findViewById(R.id.abPicker);
+			    final NumberPicker hitPicker = (NumberPicker) dialogView.findViewById(R.id.hitPicker);
+			    final NumberPicker walksPicker = (NumberPicker) dialogView.findViewById(R.id.walksPicker);
+			    final NumberPicker kPicker = (NumberPicker) dialogView.findViewById(R.id.kPicker);
+			    final NumberPicker errorsPicker = (NumberPicker) dialogView.findViewById(R.id.errorsPicker);
+			    
+			    abPicker.setMaxValue(100);
+			    abPicker.setWrapSelectorWheel(false);
+			    abPicker.setValue(ps.getAbs());
+			    hitPicker.setMaxValue(100);
+			    hitPicker.setWrapSelectorWheel(false);
+			    hitPicker.setValue(ps.getH());
+			    walksPicker.setMaxValue(100);
+			    walksPicker.setWrapSelectorWheel(false);
+			    walksPicker.setValue(ps.getBb());
+			    kPicker.setMaxValue(100);
+			    kPicker.setWrapSelectorWheel(false);
+			    kPicker.setValue(ps.getK());
+			    errorsPicker.setMaxValue(100);
+			    errorsPicker.setWrapSelectorWheel(false);
+			    errorsPicker.setValue(ps.getE());
+			    
+			    String name = mPlayerDataAdapter.getPlayer(ps.getPlayerID()).getLName();
+			    
+			    ((TextView) dialogView.findViewById(R.id.batting_player)).setText(name);
+
+			    Button button = (Button) dialogView.findViewById(R.id.save_inning);
+			    button.setOnClickListener(new OnClickListener() {
+			       	@Override
+			       	public void onClick(View v) {
+			       		ps.setAbs(abPicker.getValue());
+			       		ps.setH(hitPicker.getValue());
+			       		ps.setBb(walksPicker.getValue());
+			       		ps.setK(kPicker.getValue());
+			       		ps.setE(errorsPicker.getValue());
+			       		statsAdapter.updatePlayerStats(ps);
+						Toast.makeText(getActivity(), getString(R.string.saved), Toast.LENGTH_SHORT).show();
+			            dismiss();
+			       	}
+			 	});
+				return builder.create();
+			}
+			
+			@Override
+			public void onDismiss(DialogInterface dialog){
+				if(homeTeam) {
+					Cursor c = statsAdapter.getHomePlayerStatsForGame(mGameID);
+					cursorAdapterHomeLineup.changeCursor(c);
+				} else {
+					Cursor c = statsAdapter.getAwayPlayerStatsForGame(mGameID);
+					cursorAdapterAwayLineup.changeCursor(c);
+				}
+			}
+		};
+		df.show(getFragmentManager(), "Batting/Defense Stats");
 	}
 
 	@Override

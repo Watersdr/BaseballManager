@@ -37,7 +37,7 @@ public class PlayerStatsDataAdapter {
 		return removePlayerStats(ps.getID());
 	}
 
-	public void updateScore(PlayerStats playerStats) {
+	public void updatePlayerStats(PlayerStats playerStats) {
 		ContentValues row = getContentValuesFromPlayerStats(playerStats);
 		String selection = KEY_ID + " = " + playerStats.getID();
 		mDatabase.update(TABLE_NAME, row, selection, null);
@@ -190,7 +190,7 @@ public class PlayerStatsDataAdapter {
 	}
 
 	public Cursor getAwayPlayerStatsForGame(long gameID) {
-		return  mDatabase.rawQuery("SELECT " + PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + ", " + PlayerDataAdapter.KEY_L_NAME
+		return  mDatabase.rawQuery("SELECT " + PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_ID + ", " + PlayerDataAdapter.KEY_L_NAME
 				+ ", " + PlayerStatsDataAdapter.KEY_ABS + ", "
 				+ PlayerStatsDataAdapter.KEY_H + ", "
 				+ PlayerStatsDataAdapter.KEY_K + ", "
@@ -212,7 +212,7 @@ public class PlayerStatsDataAdapter {
 	}
 
 	public Cursor getHomePlayerStatsForGame(long gameID) {
-		return mDatabase.rawQuery("SELECT " + PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + ", " + PlayerDataAdapter.KEY_L_NAME
+		return mDatabase.rawQuery("SELECT " + PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_ID + ", " + PlayerDataAdapter.KEY_L_NAME 
 				+ ", " + PlayerStatsDataAdapter.KEY_ABS + ", "
 				+ PlayerStatsDataAdapter.KEY_H + ", "
 				+ PlayerStatsDataAdapter.KEY_K + ", "

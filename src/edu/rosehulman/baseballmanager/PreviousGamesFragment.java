@@ -16,6 +16,7 @@ public class PreviousGamesFragment extends ListFragment {
 	private GameDataAdapter mGameDataAdapter;
 	private TeamDataAdapter mTeamDataAdapter;
 	private GameArrayAdapter mGameArrayAdapter;
+	private static final int REQUEST_CODE_RECAP = 1;
 
 	public PreviousGamesFragment(long teamID) {
 		super();
@@ -53,7 +54,12 @@ public class PreviousGamesFragment extends ListFragment {
 		Intent i = new Intent(getActivity(), GameRecapActivity.class);
 		Game game = (Game) getListAdapter().getItem(position);
 		i.putExtra(GameDataAdapter.KEY_ID, game.getID());
-		startActivity(i);
+		startActivityForResult(i, REQUEST_CODE_RECAP);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		updateGames();
 	}
 
 	public void updateGames() {
