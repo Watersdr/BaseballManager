@@ -36,7 +36,17 @@ public class InningDataAdapter {
 		mDatabase.update(TABLE_NAME, row, selection, null);
 	}
 	
-	public Inning getInning(long id) {
+	public Inning getInning(long gameID, int inning) {
+		String[] projection = new String[] { KEY_ID, KEY_GAME_ID, KEY_INNING, KEY_HOME_RUNS, KEY_AWAY_RUNS, KEY_HOME_HITS, KEY_AWAY_HITS, KEY_HOME_ERRORS, KEY_AWAY_ERRORS };
+	 	String selection = KEY_GAME_ID + " = " + gameID + " AND " + KEY_INNING + " = " + inning;
+	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_GAME_ID + " DESC");
+	 	if (c != null && c.moveToFirst()) {
+	       	return getInningFromCursor(c);
+	 	}
+	 	return null;
+	}
+	
+	public Inning getInningByID(long id) {
 	 	String[] projection = new String[] { KEY_ID, KEY_GAME_ID, KEY_INNING, KEY_HOME_RUNS, KEY_AWAY_RUNS, KEY_HOME_HITS, KEY_AWAY_HITS, KEY_HOME_ERRORS, KEY_AWAY_ERRORS };
 	 	String selection = KEY_ID + " = " + id;
 	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_GAME_ID + " DESC");

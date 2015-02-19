@@ -27,7 +27,7 @@ public class Utility {
                 listItem.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
              }
              listItem.measure(0, 0);
-             totalHeight += listItem.getMeasuredHeight();
+             totalHeight += listItem.getMeasuredHeight() + 1;
         }
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();

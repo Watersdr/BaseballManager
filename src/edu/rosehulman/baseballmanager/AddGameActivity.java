@@ -22,6 +22,7 @@ public class AddGameActivity extends Activity {
 
 	private TeamDataAdapter teamDataAdapter;
 	private GameDataAdapter gameDataAdapter;
+	private InningDataAdapter mInningDataAdapter;
 	private Button mDateButton;
 	private Button mTimeButton;
 	private int yr;
@@ -37,8 +38,10 @@ public class AddGameActivity extends Activity {
 
 		teamDataAdapter = new TeamDataAdapter(this);
 		gameDataAdapter = new GameDataAdapter(this);
+		mInningDataAdapter = new InningDataAdapter(this);
 		teamDataAdapter.open();
 		gameDataAdapter.open();
+		mInningDataAdapter.open();
 
 		Button saveButton = (Button) findViewById(R.id.save_game_button);
 		mDateButton = (Button) findViewById(R.id.date_button);
@@ -78,7 +81,11 @@ public class AddGameActivity extends Activity {
 				Game game = new Game(setDate, teamDataAdapter
 						.getTeamID(homeTeamName), teamDataAdapter
 						.getTeamID(awayTeamName));
-				gameDataAdapter.addGame(game);
+				long gameID = gameDataAdapter.addGame(game);
+				for (int i = 1; i <= 9; i++) {
+					Inning inning = new Inning(gameID, i);
+					mInningDataAdapter.addInning(inning);
+				}
 				finish();
 			}
 		});

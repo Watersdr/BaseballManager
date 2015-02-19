@@ -4,6 +4,19 @@ public class Inning {
 	private long id, gameID;
 	private int inning, homeRuns, awayRuns, homeHits, awayHits, homeErrors, awayErrors;
 	
+	public Inning() {}
+	
+	public Inning(long gameID, int inning) {
+		this.gameID = gameID;
+		this.inning = inning;
+		this.homeRuns = 0;
+		this.homeHits = 0;
+		this.homeErrors = 0;
+		this.awayRuns = 0;
+		this.awayHits = 0; 
+		this.awayErrors = 0;
+	}
+	
 	public long getID() { return id; }
 	
 	public void setID(long id) { this.id = id; }

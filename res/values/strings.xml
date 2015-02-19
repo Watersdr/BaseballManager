@@ -54,6 +54,7 @@
     <string name="positions">Positions</string>
     <string name="roster">Roster</string>
     <string name="save">Save</string>
+    <string name="saved">Saved!</string>
     <string name="schedule">Schedule</string>
     <string name="season_statistics">Season Statistics</string>
     <string name="select_team">Select Your Team</string>
@@ -97,5 +98,9 @@
     <string name="_7">7</string>
     <string name="_8">8</string>
     <string name="_9">9</string>
+    <string name="errors">Errors</string>
+    <string name="hits">Hits</string>
+    <string name="runs">Runs</string>
+    <string name="inning">Inning %d</string>
 
 </resources>
