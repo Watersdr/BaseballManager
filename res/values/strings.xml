@@ -102,5 +102,7 @@
     <string name="hits">Hits</string>
     <string name="runs">Runs</string>
     <string name="inning">Inning %d</string>
+    <string name="dummy_score_home">Team1: 0</string>
+    <string name="dummy_score_away">Team2: 0</string>
 
 </resources>
