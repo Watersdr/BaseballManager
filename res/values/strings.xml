@@ -97,5 +97,7 @@
     <string name="_7">7</string>
     <string name="_8">8</string>
     <string name="_9">9</string>
+    <string name="dummy_score_home">Team1: 0</string>
+    <string name="dummy_score_away">Team2: 0</string>
 
 </resources>

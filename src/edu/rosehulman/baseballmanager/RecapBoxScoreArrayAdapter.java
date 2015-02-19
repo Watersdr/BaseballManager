@@ -24,7 +24,7 @@ public class RecapBoxScoreArrayAdapter extends ArrayAdapter<String> {
 		mInningDataAdapter.open();
 		mGameID = gameID;
 	}
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = LayoutInflater.from(getContext());
