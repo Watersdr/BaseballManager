@@ -3,6 +3,7 @@ package edu.rosehulman.baseballmanager;
 import java.util.List;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,26 +13,30 @@ import android.widget.TextView;
 public class GameArrayAdapter extends ArrayAdapter<Game> {
 
 	private int layoutResource;
-	
+	private InningDataAdapter mInningDataAdapter;
 
 	public GameArrayAdapter(Context context, int resource, List<Game> games) {
 		super(context, R.layout.upcoming_game_item, R.id.team1_textview, games);
+
+		mInningDataAdapter = new InningDataAdapter(getContext());
+		mInningDataAdapter.open();
 		layoutResource = resource;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = LayoutInflater.from(getContext());
+
+		Game game = getItem(position);
+		
 		if (layoutResource == R.layout.upcoming_game_item) {
 			View v = inflater.inflate(R.layout.upcoming_game_item, null);
 
-			Game game = getItem(position);
-
 			TextView date = (TextView) v.findViewById(R.id.date_of_game);
 			TextView time = (TextView) v.findViewById(R.id.gametime_textview);
-			TextView homeTeamView = (TextView) v
-					.findViewById(R.id.team1_textview);
 			TextView awayTeamView = (TextView) v
+					.findViewById(R.id.team1_textview);
+			TextView homeTeamView = (TextView) v
 					.findViewById(R.id.team2_textview);
 
 			String[] fullDate = game.getGameDate().split(" ");
@@ -55,29 +60,33 @@ public class GameArrayAdapter extends ArrayAdapter<Game> {
 		else {
 			View v = inflater.inflate(R.layout.previous_game_item, null);
 
-			Game game = getItem(position);
+			Cursor c = mInningDataAdapter.getInningsForGame(game.getID());
+			int homeRuns = 0;
+			int awayRuns = 0;
+			while (c.moveToNext()) {
+				homeRuns += c.getInt(c.getColumnIndexOrThrow(InningDataAdapter.KEY_HOME_RUNS));
+				awayRuns += c.getInt(c.getColumnIndexOrThrow(InningDataAdapter.KEY_AWAY_RUNS));
+			}
 
 			TextView date = (TextView) v.findViewById(R.id.date_of_game);
-			TextView homeTeamView = (TextView) v
-					.findViewById(R.id.team1_textview);
 			TextView awayTeamView = (TextView) v
+					.findViewById(R.id.team1_textview);
+			TextView homeTeamView = (TextView) v
 					.findViewById(R.id.team2_textview);
-			TextView homeScore = (TextView) v.findViewById(R.id.team1_score);
-			TextView awayScore = (TextView) v.findViewById(R.id.team2_score);
+			TextView awayScore = (TextView) v.findViewById(R.id.team1_score);
+			TextView homeScore = (TextView) v.findViewById(R.id.team2_score);
 			TextView recapOrEnter = (TextView) v.findViewById(R.id.recap_or_enter_stats);
 			
 			
 			//Replace with results queried from database
-			homeScore.setText("0");
-			awayScore.setText("0");
+			homeScore.setText("" + homeRuns);
+			awayScore.setText("" + awayRuns);
 			recapOrEnter.setText("Recap");
 
 			String[] fullDate = game.getGameDate().split(" ");
 
 //			date.setText(fullDate[0] + " " + fullDate[1] + " " + fullDate[2]);
 			date.setText(fullDate[0]);
-
-
 			
 			TeamDataAdapter adapter = new TeamDataAdapter(getContext());
 			adapter.open();
