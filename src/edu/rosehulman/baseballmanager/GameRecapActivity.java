@@ -1,17 +1,20 @@
 package edu.rosehulman.baseballmanager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class GameRecapActivity extends Activity {
 
 	private long mGameID;
-//	private RecapBoxScoreArrayAdapter mBoxScoreAdapter;
+	private RecapBoxScoreArrayAdapter mBoxScoreAdapter;
 //	private RecapLineupArrayAdapter mLineupAdapter;
 //	private RecapPitchingArrayAdapter mPitchingAdapter;
 	
@@ -27,9 +30,26 @@ public class GameRecapActivity extends Activity {
 			finish();
 		}
 		
+		GameDataAdapter gameAdapter = new GameDataAdapter(this);
+		TeamDataAdapter teamAdapter = new TeamDataAdapter(this);
+		gameAdapter.open();
+		teamAdapter.open();
+		
+		List<String> teamNames = new ArrayList<String>();
+		
+		Game game = gameAdapter.getGame(mGameID);
+		teamNames.add("Title");
+		teamNames.add(teamAdapter.getTeam(game.getHomeID()).getName());
+		teamNames.add(teamAdapter.getTeam(game.getAwayID()).getName());
+		
+		
+		mBoxScoreAdapter = new RecapBoxScoreArrayAdapter(this, R.layout.box_score_item, teamNames, mGameID);
+		ListView boxScoreListView = (ListView) findViewById(R.id.box_score_listview);
+		boxScoreListView.setAdapter(mBoxScoreAdapter);
+		Utility.setListViewHeightBasedonChildren(boxScoreListView);	
+		
+//		mLineupAdapter = new RecapBoxScoreArrayAdapter(mGameID);
 //		mBoxScoreAdapter = new RecapBoxScoreArrayAdapter(mGameID);
-//		mLineupAdapter = new RecapLineupArrayAdapter(mGameID);
-//		mPitchingAdapter = new RecapPitchingArrayAdapter(mGameID);
 		
 	}
 

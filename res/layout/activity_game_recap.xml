@@ -21,7 +21,8 @@
             android:id="@+id/box_score_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recap_final_score" />
+            android:layout_below="@id/recap_final_score"
+            android:focusable="false" />
         
         <TextView
             android:id="@+id/recap_team1"
