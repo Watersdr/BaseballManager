@@ -80,7 +80,7 @@ public class AddGameActivity extends Activity {
 				EditText awayTeam = (EditText) findViewById(R.id.away_team_edittext);
 
 				@SuppressWarnings("deprecation")
-				Date setDate = new Date(yr-1900, mon, date, hour, min);
+				Date setDate = new Date(yr-1900, mon-1, date, hour, min);
 				String homeTeamName = homeTeam.getText().toString();
 				String awayTeamName = awayTeam.getText().toString();
 
@@ -124,7 +124,7 @@ public class AddGameActivity extends Activity {
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 			hour = hourOfDay;
 			min = minute;
-			mTimeButton.setText("" + hour + ":" + min);
+			mTimeButton.setText(String.format("%02d:%02d", hour%12, min));
 		}
 	}
 
@@ -148,7 +148,7 @@ public class AddGameActivity extends Activity {
 			mon = month;
 			date = day;
 
-			mDateButton.setText("" + mon + "/" + day + "/" + yr);
+			mDateButton.setText("" + yr + "-" + mon+1 + "-" + date);
 		}
 	}
 
