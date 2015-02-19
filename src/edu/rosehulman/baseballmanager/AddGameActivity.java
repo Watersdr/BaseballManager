@@ -86,6 +86,7 @@ public class AddGameActivity extends Activity {
 					Inning inning = new Inning(gameID, i);
 					mInningDataAdapter.addInning(inning);
 				}
+				setResult(RESULT_OK);
 				finish();
 			}
 		});
