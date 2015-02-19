@@ -93,10 +93,10 @@ public class InningDataAdapter {
 	 	ContentValues row = new ContentValues();
 	 	row.put(KEY_GAME_ID, inning.getGameID());
 	 	row.put(KEY_INNING, inning.getInning());
-	 	row.put(KEY_HOME_RUNS, inning.getHomeErrors());
+	 	row.put(KEY_HOME_RUNS, inning.getHomeRuns());
 	 	row.put(KEY_AWAY_RUNS, inning.getAwayRuns());
-	 	row.put(KEY_HOME_HITS, inning.getAwayHits());
-	 	row.put(KEY_AWAY_HITS, inning.getHomeHits());
+	 	row.put(KEY_HOME_HITS, inning.getHomeHits());
+	 	row.put(KEY_AWAY_HITS, inning.getAwayHits());
 	 	row.put(KEY_HOME_ERRORS, inning.getHomeErrors());
 	 	row.put(KEY_AWAY_ERRORS, inning.getAwayErrors());
 	 	return row;

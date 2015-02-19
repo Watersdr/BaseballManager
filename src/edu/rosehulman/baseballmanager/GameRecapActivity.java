@@ -43,8 +43,8 @@ public class GameRecapActivity extends Activity {
 		String homeTeamName = teamAdapter.getTeam(game.getHomeID()).getName();
 		String awayTeamName = teamAdapter.getTeam(game.getAwayID()).getName();
 		teamNames.add("Title");
-		teamNames.add(homeTeamName);
 		teamNames.add(awayTeamName);
+		teamNames.add(homeTeamName);
 		
 		((TextView) findViewById(R.id.recap_team1)).setText(homeTeamName);
 		((TextView) findViewById(R.id.recap_team2)).setText(awayTeamName);

@@ -106,12 +106,12 @@ public class RecapBoxScoreArrayAdapter extends ArrayAdapter<String> {
 			    final NumberPicker errorsPicker = (NumberPicker) dialogView.findViewById(R.id.errorsPicker);
 			    final Inning i = mInningDataAdapter.getInning(mGameID, inning);
 			    
-			    runsPicker.setValue(awayTeam ? i.getAwayRuns() : i.getHomeRuns());
 			    runsPicker.setMaxValue(100);
 			    runsPicker.setWrapSelectorWheel(false);
-			    hitsPicker.setValue(awayTeam ? i.getAwayHits() : i.getAwayRuns());
+			    runsPicker.setValue(awayTeam ? i.getAwayRuns() : i.getHomeRuns());
 			    hitsPicker.setMaxValue(100);
 			    hitsPicker.setWrapSelectorWheel(false);
+			    hitsPicker.setValue(awayTeam ? i.getAwayHits() : i.getHomeHits());
 			    errorsPicker.setMaxValue(100);
 			    errorsPicker.setWrapSelectorWheel(false);
 			    errorsPicker.setValue(awayTeam ? i.getAwayErrors() : i.getHomeErrors());
