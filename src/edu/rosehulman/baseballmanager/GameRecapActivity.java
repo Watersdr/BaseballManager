@@ -32,7 +32,7 @@ public class GameRecapActivity extends Activity {
 	private RecapBoxScoreArrayAdapter mBoxScoreAdapter;
 	private PlayerStatsDataAdapter statsAdapter;
 	private PlayerDataAdapter mPlayerDataAdapter;
-	private SimpleCursorAdapter cursorAdapterHomeLineup, cursorAdapterAwayLineup;
+	private SimpleCursorAdapter cursorAdapterHomeLineup, cursorAdapterAwayLineup, cursorAdapterHomePitching, cursorAdapterAwayPitching;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +110,14 @@ public class GameRecapActivity extends Activity {
 		fromColumns = new String[]  {PlayerDataAdapter.KEY_L_NAME, PlayerStatsDataAdapter.KEY_IP, PlayerStatsDataAdapter.KEY_P_R, PlayerStatsDataAdapter.KEY_P_ER, PlayerStatsDataAdapter.KEY_P_K, PlayerStatsDataAdapter.KEY_P_BB};
 		toTextViews = new int[] {R.id.recap_pitcher_name, R.id.recap_innings_pitched, R.id.recap_runs, R.id.recap_earned_runs, R.id.recap_strike_outs_pitcher, R.id.recap_walks_pitcher};
 		c = statsAdapter.getHomePitcherStatsForGame(mGameID);
-		SimpleCursorAdapter cursorAdapterHomePitching = new SimpleCursorAdapter(this, R.layout.pitching_stats_item, c, fromColumns, toTextViews, 0);
+		team1PitchingListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				openPitchingStatsDialog(id, true);
+			}
+		});
+		cursorAdapterHomePitching = new SimpleCursorAdapter(this, R.layout.pitching_stats_item, c, fromColumns, toTextViews, 0);
 		team1PitchingListView.setAdapter(cursorAdapterHomePitching);
 		Utility.setListViewHeightBasedonChildren(team1PitchingListView);
 
@@ -118,7 +125,14 @@ public class GameRecapActivity extends Activity {
 		fromColumns = new String[]  {PlayerDataAdapter.KEY_L_NAME, PlayerStatsDataAdapter.KEY_IP, PlayerStatsDataAdapter.KEY_P_R, PlayerStatsDataAdapter.KEY_P_ER, PlayerStatsDataAdapter.KEY_P_K, PlayerStatsDataAdapter.KEY_P_BB};
 		toTextViews = new int[] {R.id.recap_pitcher_name, R.id.recap_innings_pitched, R.id.recap_runs, R.id.recap_earned_runs, R.id.recap_strike_outs_pitcher, R.id.recap_walks_pitcher};
 		c = statsAdapter.getAwayPitcherStatsForGame(mGameID);
-		SimpleCursorAdapter cursorAdapterAwayPitching = new SimpleCursorAdapter(this, R.layout.pitching_stats_item, c, fromColumns, toTextViews, 0);
+		team2PitchingListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				openPitchingStatsDialog(id, false);
+			}
+		});
+		cursorAdapterAwayPitching = new SimpleCursorAdapter(this, R.layout.pitching_stats_item, c, fromColumns, toTextViews, 0);
 		team2PitchingListView.setAdapter(cursorAdapterAwayPitching);
 		Utility.setListViewHeightBasedonChildren(team2PitchingListView);
 		
@@ -191,6 +205,74 @@ public class GameRecapActivity extends Activity {
 			}
 		};
 		df.show(getFragmentManager(), "Batting/Defense Stats");
+	}
+
+	private void openPitchingStatsDialog(final long id, final boolean homeTeam) {
+		DialogFragment df = new DialogFragment() {
+			@Override
+			public Dialog onCreateDialog(Bundle b) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				
+				final PlayerStats ps = statsAdapter.getPlayerStats(id);
+				
+				LayoutInflater inflater = getActivity().getLayoutInflater();
+			    View dialogView = inflater.inflate(R.layout.dialog_pitching_stats, null);
+			    builder.setView(dialogView);
+			    final NumberPicker ipPicker = (NumberPicker) dialogView.findViewById(R.id.ipPicker);
+			    final NumberPicker runPicker = (NumberPicker) dialogView.findViewById(R.id.runPicker);
+			    final NumberPicker erPicker = (NumberPicker) dialogView.findViewById(R.id.erPicker);
+			    final NumberPicker kPicker = (NumberPicker) dialogView.findViewById(R.id.kPicker);
+			    final NumberPicker walksPicker = (NumberPicker) dialogView.findViewById(R.id.walksPicker);
+			    
+			    ipPicker.setMaxValue(100);
+			    ipPicker.setWrapSelectorWheel(false);
+			    ipPicker.setValue(ps.getIp());
+			    runPicker.setMaxValue(100);
+			    runPicker.setWrapSelectorWheel(false);
+			    runPicker.setValue(ps.getP_r());
+			    erPicker.setMaxValue(100);
+			    erPicker.setWrapSelectorWheel(false);
+			    erPicker.setValue(ps.getP_er());
+			    kPicker.setMaxValue(100);
+			    kPicker.setWrapSelectorWheel(false);
+			    kPicker.setValue(ps.getP_k());
+			    walksPicker.setMaxValue(100);
+			    walksPicker.setWrapSelectorWheel(false);
+			    walksPicker.setValue(ps.getP_bb());
+			    
+			    String name = mPlayerDataAdapter.getPlayer(ps.getPlayerID()).getLName();
+			    
+			    ((TextView) dialogView.findViewById(R.id.pitching_player)).setText(name);
+
+			    Button button = (Button) dialogView.findViewById(R.id.save_inning_pitching);
+			    button.setOnClickListener(new OnClickListener() {
+			       	@Override
+			       	public void onClick(View v) {
+			       		ps.setIp(ipPicker.getValue());
+			       		ps.setP_r(runPicker.getValue());
+			       		ps.setP_er(erPicker.getValue());
+			       		ps.setP_k(kPicker.getValue());
+			       		ps.setP_bb(walksPicker.getValue());
+			       		statsAdapter.updatePlayerStats(ps);
+						Toast.makeText(getActivity(), getString(R.string.saved), Toast.LENGTH_SHORT).show();
+			            dismiss();
+			       	}
+			 	});
+				return builder.create();
+			}
+			
+			@Override
+			public void onDismiss(DialogInterface dialog){
+				if(homeTeam) {
+					Cursor c = statsAdapter.getHomePitcherStatsForGame(mGameID);
+					cursorAdapterHomePitching.changeCursor(c);
+				} else {
+					Cursor c = statsAdapter.getAwayPitcherStatsForGame(mGameID);
+					cursorAdapterAwayPitching.changeCursor(c);
+				}
+			}
+		};
+		df.show(getFragmentManager(), "Pitching Stats");
 	}
 
 	@Override

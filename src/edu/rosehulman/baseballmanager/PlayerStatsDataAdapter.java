@@ -234,7 +234,7 @@ public class PlayerStatsDataAdapter {
 	}
 	
 	public Cursor getHomePitcherStatsForGame(long gameID) {
-		return mDatabase.rawQuery("SELECT " + PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + ", " + PlayerDataAdapter.KEY_L_NAME
+		return mDatabase.rawQuery("SELECT " + PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_ID + ", " + PlayerDataAdapter.KEY_L_NAME
 				+ ", " + PlayerStatsDataAdapter.KEY_IP + ", "
 				+ PlayerStatsDataAdapter.KEY_P_R + ", "
 				+ PlayerStatsDataAdapter.KEY_P_ER + ", "
@@ -256,7 +256,7 @@ public class PlayerStatsDataAdapter {
 	}
 
 	public Cursor getAwayPitcherStatsForGame(long gameID) {
-		return mDatabase.rawQuery("SELECT " + PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + ", " + PlayerDataAdapter.KEY_L_NAME
+		return mDatabase.rawQuery("SELECT " + PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_ID + ", " + PlayerDataAdapter.KEY_L_NAME
 				+ ", " + PlayerStatsDataAdapter.KEY_IP + ", "
 				+ PlayerStatsDataAdapter.KEY_P_R + ", "
 				+ PlayerStatsDataAdapter.KEY_P_ER + ", "
