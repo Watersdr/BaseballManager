@@ -17,7 +17,7 @@ public class PlayerStatsDataAdapter {
 	public static final String KEY_H = "h";
 	public static final String KEY_K = "k";
 	public static final String KEY_BB = "b";
-	public static final String KEY_AVG = "b";
+	public static final String KEY_AVG = "AVG";
 	public static final String KEY_E = "e";
 	public static final String KEY_IP = "ip";
 	public static final String KEY_P_K = "p_k";
@@ -132,17 +132,14 @@ public class PlayerStatsDataAdapter {
 				+ "),0) AS " + KEY_ABS + ", IFNULL(SUM(" + KEY_H + "),0) AS "
 				+ KEY_H + ", IFNULL(SUM(" + KEY_K + "),0) AS " + KEY_K
 				+ ", IFNULL(SUM(" + KEY_BB + "),0) AS " + KEY_BB
-				+ ", IFNULL(SUM(" + KEY_H + "),0) / IFNULL(SUM(" + KEY_ABS
-				+ "),1) AS " + KEY_AVG + ", IFNULL(SUM(" + KEY_E + "),0) AS "
+				+ ", IFNULL(ROUND(IFNULL(SUM(" + KEY_H + "),0)*1.0 / (IFNULL(SUM(" + KEY_ABS
+				+ "),1)*1.0),2),0) AS " + KEY_AVG + ", IFNULL(SUM(" + KEY_E + "),0) AS "
 				+ KEY_E + " FROM " + PlayerDataAdapter.TABLE_NAME
 				+ " LEFT OUTER JOIN " + TABLE_NAME + " ON " + TABLE_NAME + "."
 				+ KEY_PLAYER_ID + " = " + PlayerDataAdapter.TABLE_NAME + "."
 				+ PlayerDataAdapter.KEY_ID + " WHERE "
 				+ PlayerDataAdapter.TABLE_NAME + "."
-				+ PlayerDataAdapter.KEY_TEAM_ID + "=? AND "
-				+ PlayerDataAdapter.TABLE_NAME + "."
-				+ PlayerDataAdapter.KEY_BATTING_ORDER + ">9"
-				+ " GROUP BY "
+				+ PlayerDataAdapter.KEY_TEAM_ID + "=?" + " GROUP BY "
 				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID
 				+ ", " + PlayerDataAdapter.TABLE_NAME + "."
 				+ PlayerDataAdapter.KEY_BATTING_ORDER + ", "
@@ -167,8 +164,8 @@ public class PlayerStatsDataAdapter {
 				+ KEY_P_K + ", IFNULL(SUM(" + KEY_P_BB + "),0) AS " + KEY_P_BB
 				+ ", IFNULL(SUM(" + KEY_P_R + "),0) AS " + KEY_P_R
 				+ ", IFNULL(SUM(" + KEY_P_ER + "),0) AS " + KEY_P_ER
-				+ ", IFNULL(SUM(" + KEY_P_ER + "),0) / IFNULL(SUM(" + KEY_IP
-				+ "),1) AS " + KEY_P_ERA + " FROM "
+				+ ", IFNULL(ROUND(IFNULL(SUM(" + KEY_P_ER + "),0)*1.0 / (IFNULL(SUM(" + KEY_IP
+				+ "),1)*1.0),2),0) AS " + KEY_P_ERA + " FROM "
 				+ PlayerDataAdapter.TABLE_NAME + " LEFT OUTER JOIN "
 				+ TABLE_NAME + " ON " + TABLE_NAME + "." + KEY_PLAYER_ID
 				+ " = " + PlayerDataAdapter.TABLE_NAME + "."
