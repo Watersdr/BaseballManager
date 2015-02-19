@@ -139,7 +139,10 @@ public class PlayerStatsDataAdapter {
 				+ KEY_PLAYER_ID + " = " + PlayerDataAdapter.TABLE_NAME + "."
 				+ PlayerDataAdapter.KEY_ID + " WHERE "
 				+ PlayerDataAdapter.TABLE_NAME + "."
-				+ PlayerDataAdapter.KEY_TEAM_ID + "=?" + " GROUP BY "
+				+ PlayerDataAdapter.KEY_TEAM_ID + "=? AND "
+				+ PlayerDataAdapter.TABLE_NAME + "."
+				+ PlayerDataAdapter.KEY_BATTING_ORDER + ">9"
+				+ " GROUP BY "
 				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID
 				+ ", " + PlayerDataAdapter.TABLE_NAME + "."
 				+ PlayerDataAdapter.KEY_BATTING_ORDER + ", "
@@ -171,9 +174,10 @@ public class PlayerStatsDataAdapter {
 				+ " = " + PlayerDataAdapter.TABLE_NAME + "."
 				+ PlayerDataAdapter.KEY_ID + " WHERE "
 				+ PlayerDataAdapter.TABLE_NAME + "."
-				+ PlayerDataAdapter.KEY_TEAM_ID + "=? AND "
+				+ PlayerDataAdapter.KEY_TEAM_ID + "=? AND ("
 				+ PlayerDataAdapter.TABLE_NAME + "."
-				+ PlayerDataAdapter.KEY_DC_P + ">-1" + " GROUP BY "
+				+ PlayerDataAdapter.KEY_DC_P + ">-1 OR "
+				+ KEY_IP + ">0)" + " GROUP BY "
 				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID
 				+ ", " + PlayerDataAdapter.TABLE_NAME + "."
 				+ PlayerDataAdapter.KEY_DC_P + ", "
@@ -198,9 +202,10 @@ public class PlayerStatsDataAdapter {
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_GAME_ID + " INNER JOIN "
 				+ PlayerDataAdapter.TABLE_NAME + " ON "
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_PLAYER_ID + " = "
-				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + " AND "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + " AND "
 				+ GameDataAdapter.TABLE_NAME + "." +GameDataAdapter.KEY_AWAY_ID + " = "
-				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_TEAM_ID + " WHERE "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_TEAM_ID + " AND "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_BATTING_ORDER + "<9" + " WHERE "
 				+ GameDataAdapter.TABLE_NAME + "." + GameDataAdapter.KEY_ID + "=? " + " ORDER BY "
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_BATTING_ORDER + " ASC",
 				new String[] { "" + gameID });
@@ -219,9 +224,10 @@ public class PlayerStatsDataAdapter {
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_GAME_ID + " INNER JOIN "
 				+ PlayerDataAdapter.TABLE_NAME + " ON "
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_PLAYER_ID + " = "
-				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + " AND "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + " AND "
 				+ GameDataAdapter.TABLE_NAME + "." +GameDataAdapter.KEY_HOME_ID + " = "
-				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_TEAM_ID + " WHERE "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_TEAM_ID + " AND "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_BATTING_ORDER + "<9" + " WHERE "
 				+ GameDataAdapter.TABLE_NAME + "." + GameDataAdapter.KEY_ID + "=? " + " ORDER BY "
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_BATTING_ORDER + " ASC",
 				new String[] { "" + gameID });
@@ -240,9 +246,10 @@ public class PlayerStatsDataAdapter {
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_GAME_ID + " INNER JOIN "
 				+ PlayerDataAdapter.TABLE_NAME + " ON "
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_PLAYER_ID + " = "
-				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + " AND "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + " AND "
 				+ GameDataAdapter.TABLE_NAME + "." +GameDataAdapter.KEY_HOME_ID + " = "
-				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_TEAM_ID + " WHERE "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_TEAM_ID + " AND " 
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_DC_P + ">-1" + " WHERE "
 				+ GameDataAdapter.TABLE_NAME + "." + GameDataAdapter.KEY_ID + "=? " + " ORDER BY "
 				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_DC_P + " ASC",
 				new String[] { "" + gameID });
@@ -261,9 +268,10 @@ public class PlayerStatsDataAdapter {
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_GAME_ID + " INNER JOIN "
 				+ PlayerDataAdapter.TABLE_NAME + " ON "
 				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerStatsDataAdapter.KEY_PLAYER_ID + " = "
-				+ PlayerStatsDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + " AND "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_ID + " AND "
 				+ GameDataAdapter.TABLE_NAME + "." +GameDataAdapter.KEY_AWAY_ID + " = "
-				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_TEAM_ID + " WHERE "
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_TEAM_ID + " AND " 
+				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_DC_P + ">-1" + " WHERE "
 				+ GameDataAdapter.TABLE_NAME + "." + GameDataAdapter.KEY_ID + "=? " + " ORDER BY "
 				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_DC_P + " ASC",
 				new String[] { "" + gameID });

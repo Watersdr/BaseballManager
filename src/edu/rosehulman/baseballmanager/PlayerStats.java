@@ -5,6 +5,10 @@ public class PlayerStats {
 	private int battingOrder, abs, h, k, bb, e, ip, p_k, p_bb, p_r, p_er;
 	
 	public PlayerStats() {}
+	
+	public PlayerStats(long playerID, long gameID, int battingOrder) {
+		this(playerID, gameID, battingOrder, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	}
 
 	public PlayerStats(long playerID, long gameID, int battingOrder, int abs, int h, int k, int bb, int e, int ip, int p_k, int p_bb, int p_r, int p_er) {
 		this.playerID = playerID;

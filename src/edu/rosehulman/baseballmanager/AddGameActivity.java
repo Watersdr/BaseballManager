@@ -23,6 +23,8 @@ public class AddGameActivity extends Activity {
 	private TeamDataAdapter teamDataAdapter;
 	private GameDataAdapter gameDataAdapter;
 	private InningDataAdapter mInningDataAdapter;
+	private PlayerDataAdapter mPlayerDataAdapter;
+	private PlayerStatsDataAdapter mPlayerStatsDataAdapter;
 	private Button mDateButton;
 	private Button mTimeButton;
 	private int yr;
@@ -39,9 +41,13 @@ public class AddGameActivity extends Activity {
 		teamDataAdapter = new TeamDataAdapter(this);
 		gameDataAdapter = new GameDataAdapter(this);
 		mInningDataAdapter = new InningDataAdapter(this);
+		mPlayerDataAdapter = new PlayerDataAdapter(this);
+		mPlayerStatsDataAdapter = new PlayerStatsDataAdapter(this);
 		teamDataAdapter.open();
 		gameDataAdapter.open();
 		mInningDataAdapter.open();
+		mPlayerDataAdapter.open();
+		mPlayerStatsDataAdapter.open();
 
 		Button saveButton = (Button) findViewById(R.id.save_game_button);
 		mDateButton = (Button) findViewById(R.id.date_button);
@@ -78,13 +84,21 @@ public class AddGameActivity extends Activity {
 				String homeTeamName = homeTeam.getText().toString();
 				String awayTeamName = awayTeam.getText().toString();
 
-				Game game = new Game(setDate, teamDataAdapter
-						.getTeamID(homeTeamName), teamDataAdapter
-						.getTeamID(awayTeamName));
+				long homeTeamID = teamDataAdapter.getTeamID(homeTeamName);
+				long awayTeamID = teamDataAdapter.getTeamID(awayTeamName);
+				Game game = new Game(setDate, homeTeamID, awayTeamID);
 				long gameID = gameDataAdapter.addGame(game);
 				for (int i = 1; i <= 9; i++) {
 					Inning inning = new Inning(gameID, i);
 					mInningDataAdapter.addInning(inning);
+				}
+				for (Player p : mPlayerDataAdapter.getTeamLineup(homeTeamID)) {
+					PlayerStats ps = new PlayerStats(p.getID(), gameID, p.getBattingOrder());
+					mPlayerStatsDataAdapter.addPlayerStats(ps);
+				}
+				for (Player p : mPlayerDataAdapter.getTeamLineup(awayTeamID)) {
+					PlayerStats ps = new PlayerStats(p.getID(), gameID, p.getBattingOrder());
+					mPlayerStatsDataAdapter.addPlayerStats(ps);
 				}
 				finish();
 			}

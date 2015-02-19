@@ -50,11 +50,11 @@ public class GameRecapActivity extends Activity {
 		((TextView) findViewById(R.id.recap_team2)).setText(awayTeamName);
 		
 		//fix with actual runs
-		((TextView) findViewById(R.id.recap_home_final_score)).setText(homeTeamName + ": 0");
-		((TextView) findViewById(R.id.recap_away_final_score)).setText(awayTeamName + ": 0"); 
+		TextView homeTV = (TextView) findViewById(R.id.recap_home_final_score);
+		TextView awayTV = (TextView) findViewById(R.id.recap_away_final_score);
 		
 		
-		mBoxScoreAdapter = new RecapBoxScoreArrayAdapter(this, R.layout.box_score_item, teamNames, mGameID);
+		mBoxScoreAdapter = new RecapBoxScoreArrayAdapter(this, R.layout.box_score_item, teamNames, mGameID, homeTV, awayTV);
 		ListView boxScoreListView = (ListView) findViewById(R.id.box_score_listview);
 		boxScoreListView.setAdapter(mBoxScoreAdapter);
 		Utility.setListViewHeightBasedonChildren(boxScoreListView);	
@@ -88,7 +88,7 @@ public class GameRecapActivity extends Activity {
 		toTextViews = new int[] {R.id.recap_pitcher_name, R.id.recap_innings_pitched, R.id.recap_runs, R.id.recap_earned_runs, R.id.recap_strike_outs_pitcher, R.id.recap_walks_pitcher};
 		c = statsAdapter.getAwayPitcherStatsForGame(mGameID);
 		SimpleCursorAdapter cursorAdapterAwayPitching = new SimpleCursorAdapter(this, R.layout.pitching_stats_item, c, fromColumns, toTextViews, 0);
-		team1PitchingListView.setAdapter(cursorAdapterAwayPitching);
+		team2PitchingListView.setAdapter(cursorAdapterAwayPitching);
 		Utility.setListViewHeightBasedonChildren(team2PitchingListView);
 		
 		

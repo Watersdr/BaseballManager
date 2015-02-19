@@ -26,10 +26,13 @@ public class RecapBoxScoreArrayAdapter extends ArrayAdapter<String> {
 	private long mGameID;
 	private InningDataAdapter mInningDataAdapter;
 	private ArrayList<TextView> inningViews;
+	private TextView homeScore, awayScore;
 	
-	public RecapBoxScoreArrayAdapter(Context context, int resource, List<String> teams, long gameID) {
+	public RecapBoxScoreArrayAdapter(Context context, int resource, List<String> teams, long gameID, TextView homeScore, TextView awayScore) {
 		super(context, R.layout.box_score_item, R.id.team_name, teams);
-
+		this.homeScore = homeScore;
+		this.awayScore = awayScore;
+		
 		mInningDataAdapter = new InningDataAdapter(getContext());
 		mInningDataAdapter.open();
 		mGameID = gameID;
@@ -86,9 +89,14 @@ public class RecapBoxScoreArrayAdapter extends ArrayAdapter<String> {
 			currentInnNum++;
 		}
 		
+		if (position == 1) {
+			awayScore.setText(getItem(position) + ": " + runTotal);
+		} else {
+			homeScore.setText(getItem(position) + ": " + runTotal);
+		}
 		((TextView) v.findViewById(R.id.runs_total)).setText(""+runTotal);
 		((TextView) v.findViewById(R.id.hit_total)).setText(""+hitTotal);
-		((TextView) v.findViewById(R.id.error_total)).setText(""+errorTotal);		
+		((TextView) v.findViewById(R.id.error_total)).setText(""+errorTotal);
 		return v;
 	}
 	
