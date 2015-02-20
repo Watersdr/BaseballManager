@@ -29,6 +29,7 @@ public class LineupFragment extends Fragment {
 	private DynamicListView mlistView;
     private long mSelectedPlayerID;
     private ArrayList<Player> players;
+	private ActionMode mActionMode;
     
 	private static final int REQUEST_PLAYER_ADDEDIT = 1;
 	
@@ -94,7 +95,7 @@ public class LineupFragment extends Fragment {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			mSelectedPlayerID = id;
-			getActivity().startActionMode(mActionModeCallback);
+			mActionMode = getActivity().startActionMode(mActionModeCallback);
 		}		
 	};
 	
@@ -148,13 +149,18 @@ public class LineupFragment extends Fragment {
 			public Dialog onCreateDialog(Bundle b) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 				builder.setTitle(R.string.confirm_deletion);
-				builder.setMessage(R.string.confirm_message);
+				builder.setMessage(R.string.confirm_message_player);
 				builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						mPlayerDataAdapter.removePlayer(mSelectedPlayerID);
 						listener.updateRoster();
+
+						if (mActionMode != null) 
+						{
+							mActionMode.finish();
+						}
 					}
 				});
 				builder.setNegativeButton(android.R.string.cancel, null);
@@ -172,6 +178,10 @@ public class LineupFragment extends Fragment {
             case REQUEST_PLAYER_ADDEDIT:
                 if (resultCode == Activity.RESULT_OK){
                 	listener.updateRoster();
+					if (mActionMode != null) 
+					{
+						mActionMode.finish();
+					}
                     Log.d(SplashScreen.BM, "Result ok!");
                 } 
                 else {

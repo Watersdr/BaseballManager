@@ -112,4 +112,8 @@ public class InningDataAdapter {
 	 	String selection = KEY_GAME_ID + " = " + gameID;
 	 	return mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_INNING + " ASC");
 	}
+
+	public boolean removeGame(long mSelectedGameID) {
+		return mDatabase.delete(TABLE_NAME, KEY_GAME_ID + " = " + mSelectedGameID, null) > 0;
+	}
 }

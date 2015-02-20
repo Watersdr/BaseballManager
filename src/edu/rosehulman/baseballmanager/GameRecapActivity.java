@@ -288,9 +288,39 @@ public class GameRecapActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_delete_game) {
+			showDeleteDialog();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	protected void showDeleteDialog() {
+		DialogFragment df = new DialogFragment() {
+			@Override
+			public Dialog onCreateDialog(Bundle b) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				builder.setTitle(R.string.confirm_deletion);
+				builder.setMessage(R.string.confirm_message_game);
+				builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						GameDataAdapter mGameDataAdapter = new GameDataAdapter(getActivity());
+						InningDataAdapter mInningDataAdapter = new InningDataAdapter(getActivity());
+						mInningDataAdapter.open();
+						mGameDataAdapter.open();
+						mInningDataAdapter.removeGame(mGameID);
+						mGameDataAdapter.removeGame(mGameID);
+						statsAdapter.removeGame(mGameID);
+						
+						finish();
+					}
+				});
+				builder.setNegativeButton(android.R.string.cancel, null);
+				return builder.create();
+			}
+		};
+		df.show(getFragmentManager(), "Delete Game");
 	}
 }

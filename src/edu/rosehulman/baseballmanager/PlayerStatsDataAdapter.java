@@ -273,4 +273,8 @@ public class PlayerStatsDataAdapter {
 				+ PlayerDataAdapter.TABLE_NAME + "." + PlayerDataAdapter.KEY_DC_P + " ASC",
 				new String[] { "" + gameID });
 	}
+
+	public boolean removeGame(long mSelectedGameID) {
+		return mDatabase.delete(TABLE_NAME, KEY_GAME_ID + " = " + mSelectedGameID, null) > 0;
+	}
 }
