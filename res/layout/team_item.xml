@@ -11,7 +11,9 @@
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
         android:text="@string/team_name_empty_string"
-        android:textSize="22sp" >
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:background="@color/primary" >
 
     </TextView>
 
