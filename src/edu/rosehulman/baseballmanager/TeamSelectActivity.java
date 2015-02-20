@@ -60,14 +60,6 @@ public class TeamSelectActivity extends Activity {
 		
 	}
 	
-	/*@Override
-	protected void onResume() {
-		/*if (mTeamDataAdapter != null) {
-			Cursor cursor = mTeamDataAdapter.getTeamsCursor();
-			mCursorAdapter.changeCursor(cursor);
-		}
-	}*/
-	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

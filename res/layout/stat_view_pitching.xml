@@ -20,7 +20,6 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center_vertical"
-            android:text="@string/name_stub"
             android:textSize="20sp" />
 
         <View

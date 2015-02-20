@@ -148,7 +148,7 @@ public class AddGameActivity extends Activity {
 			mon = month;
 			date = day;
 
-			mDateButton.setText("" + yr + "-" + mon+1 + "-" + date);
+			mDateButton.setText("" + yr + "-" + (mon+1) + "-" + date);
 		}
 	}
 
