@@ -24,7 +24,7 @@ public class TeamDataAdapter {
 	 	return removeTeam(t.getID());
 	}
 	
-	public void updateScore(Team team) {
+	public void updateTeam(Team team) {
 		ContentValues row = getContentValuesFromTeam(team);
 		String selection = KEY_ID + " = " + team.getID();
 		mDatabase.update(TABLE_NAME, row, selection, null);

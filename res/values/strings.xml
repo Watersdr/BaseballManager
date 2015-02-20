@@ -23,7 +23,9 @@
     <string name="action_settings">Settings</string>
     <string name="add_player">Add Player</string>
     <string name="edit_player">Edit Player</string>
+    <string name="edit_team">Edit Team</string>
     <string name="remove_player">Remove Player</string>
+    <string name="delete_game">Delete Game</string>
     <!-- Positions -->
     <string name="p">P</string>
     <string name="c">C</string>

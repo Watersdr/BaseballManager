@@ -11,8 +11,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -42,6 +40,15 @@ public class AddEditTeamActivity extends Activity {
 		mTeamPicture = (ImageView) findViewById(R.id.team_picture);
 		mTeamBitmap = ((BitmapDrawable) mTeamPicture.getDrawable()).getBitmap();
 		mTeamName = (EditText) findViewById(R.id.new_team_name);
+		
+		Intent i = getIntent();
+		final long id = i.getLongExtra(TeamDataAdapter.KEY_ID, -1);
+		if (id > -1) {
+			Team team = adapter.getTeam(id);
+			mTeamName.setText(team.getName());
+			mTeamBitmap = BitmapFactory.decodeByteArray(team.getLogo() , 0, team.getLogo() .length);
+			mTeamPicture.setImageBitmap(mTeamBitmap);
+		}
 		
 		mTeamPicture.setOnClickListener(new OnClickListener() {
 			
@@ -78,40 +85,27 @@ public class AddEditTeamActivity extends Activity {
 				mTeamBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 				byte[] byteArray = stream.toByteArray();
 				Team newTeam = new Team(name, byteArray);
-				adapter.addTeam(newTeam);
+				if(id > -1) {
+					Intent returnIntent = new Intent();
+					setResult(RESULT_OK, returnIntent);
+					newTeam.setID(id);
+					adapter.updateTeam(newTeam);
+				} else {
+					adapter.addTeam(newTeam);
+					Intent i = new Intent(AddEditTeamActivity.this, TeamPageActivity.class);
+					i.putExtra(TeamDataAdapter.KEY_ID, newTeam.getID());
+					AddEditTeamActivity.this.startActivity(i);
+				}
 				
-				Intent i = new Intent(AddEditTeamActivity.this, TeamPageActivity.class);
-				i.putExtra(TeamDataAdapter.KEY_ID, newTeam.getID());
-				AddEditTeamActivity.this.startActivity(i);
-				AddEditTeamActivity.this.finish();
+				finish();
 			}
 		});
 	}
 
-	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		adapter.close();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.create_team, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 	
 	@Override
