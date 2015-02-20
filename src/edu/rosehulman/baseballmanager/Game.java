@@ -20,7 +20,11 @@ public class Game {
 	public String getGameDate() { 
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		return f.format(gameDate);
-}
+	}
+	
+	public Date getGameDateAsDate() {
+		return gameDate;
+	}
 
 	public long getID() { return id; }
     

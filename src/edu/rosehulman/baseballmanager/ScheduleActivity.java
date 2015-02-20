@@ -1,16 +1,21 @@
 package edu.rosehulman.baseballmanager;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ScheduleActivity extends Activity {
+public class ScheduleActivity extends Activity implements OnUpdateScheduleListener {
 
+	private GameDataAdapter mGameDataAdapter;
 	/*
 	 * Code for tabs based on Android Tutorials for Beginners
 	 * http://www.learn-android-easily.com/2013/07/android-tabwidget-example.html
@@ -24,6 +29,9 @@ public class ScheduleActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule);
+		
+		mGameDataAdapter = new GameDataAdapter(this);
+		mGameDataAdapter.open();
 
 		teamID = getIntent().getLongExtra(TeamDataAdapter.KEY_ID, -1);
 		upcomingFragment = new UpcomingGamesFragment(teamID);
@@ -45,6 +53,8 @@ public class ScheduleActivity extends Activity {
 		// Add tabs to actionbar
 		actionBar.addTab(Tab1);
 		actionBar.addTab(Tab2);
+		
+		updateSchedule();
 	}
 	
 	@Override
@@ -71,8 +81,7 @@ public class ScheduleActivity extends Activity {
         switch (requestCode) {
             case REQUEST_ENTER_GAME:
                 if (resultCode == Activity.RESULT_OK){
-                	((UpcomingGamesFragment) upcomingFragment).updateGames();
-                	((PreviousGamesFragment) previousFragment).updateGames();
+                	updateSchedule();
                     Log.d(SplashScreen.BM, "Result ok! Adding game");
                 } 
                 else {
@@ -84,4 +93,23 @@ public class ScheduleActivity extends Activity {
                 break;
         }
     }
+
+	@Override
+	public void updateSchedule() {
+		Cursor c = mGameDataAdapter.getGamesCursor(teamID);
+		ArrayList<Game> upcoming = new ArrayList<Game>();
+		ArrayList<Game> previous = new ArrayList<Game>();
+		
+		while (c.moveToNext()) {
+			Game g = mGameDataAdapter.getGame(c.getLong(0));
+			if(g.getGameDateAsDate().after(new Date())) {
+				upcoming.add(g);
+			} else {
+				previous.add(g);
+			}
+		}
+		
+    	((UpcomingGamesFragment) upcomingFragment).updateGames(upcoming);
+    	((PreviousGamesFragment) previousFragment).updateGames(previous);
+	}
 }

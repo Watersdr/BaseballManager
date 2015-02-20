@@ -2,9 +2,9 @@ package edu.rosehulman.baseballmanager;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 public class PreviousGamesFragment extends ListFragment {
+	private OnUpdateScheduleListener listener;
 	private long teamID;
 	private GameDataAdapter mGameDataAdapter;
 	private TeamDataAdapter mTeamDataAdapter;
 	private GameArrayAdapter mGameArrayAdapter;
+	private ArrayList<Game> games;
 	private static final int REQUEST_CODE_RECAP = 1;
 
 	public PreviousGamesFragment(long teamID) {
@@ -28,19 +30,22 @@ public class PreviousGamesFragment extends ListFragment {
 	}
 
 	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			listener = (OnUpdateScheduleListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString() + " must implement OnUpdateScheduleListener");
+		}
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		View v = inflater.inflate(R.layout.activity_previous_games, container,
 				false);
-
-		Cursor c = mGameDataAdapter.getPreviousGamesCursor(teamID);
-		ArrayList<Game> games = new ArrayList<Game>();
-		while (c.moveToNext()) {
-			Game g = mGameDataAdapter.getGame(c.getLong(0));
-			games.add(g);
-		}
-
+		
 		mGameArrayAdapter = new GameArrayAdapter(getActivity(),
 				R.layout.previous_game_item, games);
 		setListAdapter(mGameArrayAdapter);
@@ -59,20 +64,16 @@ public class PreviousGamesFragment extends ListFragment {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
-		updateGames();
+		listener.updateSchedule();
 	}
 
-	public void updateGames() {
+	public void updateGames(ArrayList<Game> games) {
+		this.games = games;
+		
 		if (getActivity() != null) {
-			Cursor c = mGameDataAdapter.getPreviousGamesCursor(teamID);
-			ArrayList<Game> games = new ArrayList<Game>();
-			while (c.moveToNext()) {
-				Game g = mGameDataAdapter.getGame(c.getLong(0));
-				games.add(g);
-			}
-
 			mGameArrayAdapter = new GameArrayAdapter(getActivity(),
 					R.layout.previous_game_item, games);
+			mGameArrayAdapter.notifyDataSetChanged();
 			setListAdapter(mGameArrayAdapter);
 		}
 	}

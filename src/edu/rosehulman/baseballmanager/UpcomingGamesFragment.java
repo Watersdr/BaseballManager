@@ -2,14 +2,13 @@ package edu.rosehulman.baseballmanager;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ListFragment;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 public class UpcomingGamesFragment extends ListFragment {
-
+	private OnUpdateScheduleListener listener;
 	private long teamID, mSelectedGameID;
 	private GameDataAdapter mGameDataAdapter;
 	private TeamDataAdapter mTeamDataAdapter;
@@ -38,23 +37,22 @@ public class UpcomingGamesFragment extends ListFragment {
 	}
 
 	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			listener = (OnUpdateScheduleListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString() + " must implement OnUpdateScheduleListener");
+		}
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		View v = inflater.inflate(R.layout.activity_upcoming_games, container,
 				false);
-
-		// Cursor c = mGameDataAdapter.getUpcomingGamesCursor(teamID);
-		Cursor c = mGameDataAdapter.getUpcomingGamesCursor(teamID);
-		Log.d(SplashScreen.BM, "" + c.getCount());
-		Log.d(SplashScreen.BM, "" + teamID);
-		games = new ArrayList<Game>();
-		while (c.moveToNext()) {
-			Game g = mGameDataAdapter.getGame(c.getLong(0));
-			Log.d(SplashScreen.BM, "adding game to adapter");
-			games.add(g);
-		}
-
+		
 		mGameArrayAdapter = new GameArrayAdapter(getActivity(),
 				R.layout.upcoming_game_item, games);
 		setListAdapter(mGameArrayAdapter);
@@ -62,14 +60,10 @@ public class UpcomingGamesFragment extends ListFragment {
 		return v;
 	}
 
-	public void updateGames() {
-		if (getActivity() != null) {
-			Cursor c = mGameDataAdapter.getUpcomingGamesCursor(teamID);
-			games = new ArrayList<Game>();
-			while (c.moveToNext()) {
-				Game g = mGameDataAdapter.getGame(c.getLong(0));
-				games.add(g);
-			}
+	public void updateGames(ArrayList<Game> games) {
+		this.games = games;
+		
+		if (getActivity() != null) {			
 			mGameArrayAdapter = new GameArrayAdapter(getActivity(),
 					R.layout.upcoming_game_item, games);
 			mGameArrayAdapter.notifyDataSetChanged();
@@ -132,7 +126,7 @@ public class UpcomingGamesFragment extends ListFragment {
 						mInningDataAdapter.removeGame(mSelectedGameID);
 						mPlayerStatsDataAdapter.removeGame(mSelectedGameID);
 						
-						updateGames();
+						listener.updateSchedule();
 						if (mActionMode != null) 
 						{
 							mActionMode.finish();

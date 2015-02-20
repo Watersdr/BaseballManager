@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class RosterActivity extends Activity  implements OnUpdateRosterListener {
+public class RosterActivity extends Activity implements OnUpdateRosterListener {
 
 	private ActionBar.Tab Tab1, Tab2;
 	private Fragment lineupFragment, depthChartFragment;
