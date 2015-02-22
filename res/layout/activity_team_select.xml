@@ -8,26 +8,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.rosehulman.baseballmanager.TeamSelectActivity" >
 
-    <TextView
+     <TextView
         android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/welcome"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:text="@string/welcome" />
 
     <TextView
         android:id="@+id/select_team_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/welcome_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:text="@string/select_team"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:text="@string/select_team" />
 
     <Button
         android:id="@+id/create_team_button"
@@ -35,31 +33,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/primary_dark"
-        android:padding="2dp"
-        android:text="@string/create_team"
-        android:textColor="@color/white" />
+        android:text="@string/create_team" />
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/create_team_button"
+        android:layout_below="@+id/select_team_text"
         android:layout_margin="30dp"
-        android:background="@color/primary" >
-
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_dark" >
-
-            <ListView
-                android:id="@+id/team_list_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:background="@color/primary_dark" >
-            </ListView>
+        android:background="@color/black">
+        
+		<FrameLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:layout_margin="2dp"
+		        android:background="@color/white">
+		        
+	        <ListView
+	            android:id="@+id/team_list_view"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" >
+	
+	        </ListView>
         </FrameLayout>
+
     </FrameLayout>
 
 </RelativeLayout>
