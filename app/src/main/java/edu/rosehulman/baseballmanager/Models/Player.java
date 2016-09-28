@@ -1,4 +1,4 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Models;
 
 public class Player {
     private String firstName, lastName;

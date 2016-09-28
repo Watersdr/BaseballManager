@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Adapters;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +26,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import edu.rosehulman.baseballmanager.Player;
+import edu.rosehulman.baseballmanager.R;
 
 public class StablePlayerAdapter extends ArrayAdapter<String> {
 

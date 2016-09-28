@@ -1,4 +1,4 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Adapters;
 
 import android.content.Context;
 import android.database.Cursor;

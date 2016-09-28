@@ -1,4 +1,4 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +17,11 @@ import android.widget.NumberPicker;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import edu.rosehulman.baseballmanager.PlayerDataAdapter;
+import edu.rosehulman.baseballmanager.PlayerStats;
+import edu.rosehulman.baseballmanager.PlayerStatsDataAdapter;
+import edu.rosehulman.baseballmanager.R;
 
 public class BattingDefenseCursorAdapter extends SimpleCursorAdapter {
 	private Activity activity;

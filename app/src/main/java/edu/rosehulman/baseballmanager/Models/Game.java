@@ -1,4 +1,4 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Models;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

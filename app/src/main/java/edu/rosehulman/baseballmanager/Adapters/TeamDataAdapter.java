@@ -1,10 +1,13 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Adapters;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import edu.rosehulman.baseballmanager.DatabaseHelper;
+import edu.rosehulman.baseballmanager.Team;
 
 public class TeamDataAdapter {
 	public static final String TABLE_NAME = "teams";
@@ -33,7 +36,8 @@ public class TeamDataAdapter {
 	public Team getTeam(long id) {
 	 	String[] projection = new String[] { KEY_ID, KEY_NAME, KEY_LOGO };
 	 	String selection = KEY_ID + " = " + id;
-	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_NAME + " DESC");
+	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_NAME
+				+ " DESC");
 	 	if (c != null && c.moveToFirst()) {
 	       	return getTeamFromCursor(c);
 	 	}
@@ -42,7 +46,8 @@ public class TeamDataAdapter {
 	public long getTeamID(String name) {
 	 	String[] projection = new String[] { KEY_ID };
 	 	String selection = KEY_NAME + " = \'" + name + "\'";
-	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_NAME + " DESC");
+	 	Cursor c = mDatabase.query(TABLE_NAME, projection, selection, null, null, null, KEY_NAME
+				+ " DESC");
 	 	if (c != null && c.moveToFirst()) {
 	       	return c.getInt(c.getColumnIndexOrThrow(KEY_ID));
 	 	}

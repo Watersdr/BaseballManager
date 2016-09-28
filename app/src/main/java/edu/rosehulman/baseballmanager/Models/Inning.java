@@ -1,4 +1,4 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Models;
 
 public class Inning {
 	private long id, gameID;

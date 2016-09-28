@@ -1,10 +1,13 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Adapters;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import edu.rosehulman.baseballmanager.DatabaseHelper;
+import edu.rosehulman.baseballmanager.Inning;
 
 public class InningDataAdapter {
 	public static final String TABLE_NAME = "innings";

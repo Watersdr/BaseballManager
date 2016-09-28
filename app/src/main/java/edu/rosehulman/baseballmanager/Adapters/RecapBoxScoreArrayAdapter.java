@@ -1,4 +1,4 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Adapters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,9 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import edu.rosehulman.baseballmanager.Inning;
+import edu.rosehulman.baseballmanager.R;
 
 public class RecapBoxScoreArrayAdapter extends ArrayAdapter<String> {
 	

@@ -1,4 +1,4 @@
-package edu.rosehulman.baseballmanager;
+package edu.rosehulman.baseballmanager.Adapters;
 
 import java.util.List;
 
@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import edu.rosehulman.baseballmanager.Game;
+import edu.rosehulman.baseballmanager.R;
+import edu.rosehulman.baseballmanager.Team;
 
 public class GameArrayAdapter extends ArrayAdapter<Game> {
 
