@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\lineup.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\lineup.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\roster.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\roster.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\depth_chart.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\depth_chart.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\team_page.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\team_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\add_edit_player.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\add_edit_player.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\batting_defense_stats.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\batting_defense_stats.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\pitching_stats.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\pitching_stats.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\schedule.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\schedule.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\menu\\game_recap.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\menu\\game_recap.xml"
+    }
+]

@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Activities.TeamPageActivity" >
+
+    <Button
+        android:id="@+id/schedule_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/season_statistics_button"
+        android:layout_alignEnd="@+id/season_statistics_button"
+        android:layout_centerVertical="true"
+        android:text="@string/schedule" />
+
+    <Button
+        android:id="@+id/roster_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/schedule_button"
+        android:layout_alignStart="@+id/schedule_button"
+        android:layout_alignEnd="@+id/schedule_button"
+        android:text="@string/roster" />
+
+    <Button
+        android:id="@+id/season_statistics_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/schedule_button"
+        android:layout_centerHorizontal="true"
+        android:text="@string/season_statistics" />
+
+    <TextView
+        android:id="@+id/team_name_item"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/roster_button"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical"
+        android:text="@string/manage_team" />
+
+</RelativeLayout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+		android:id="@+id/batting_player"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="5dp"
+		android:text="@string/cubs"/>
+
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+
+	    <RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_weight="1">
+		    
+		    <NumberPicker
+		        android:id="@+id/abPicker"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"/>
+		    
+		    <TextView
+		        android:layout_below="@id/abPicker"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+	            android:text="@string/at_bats"/>
+		    
+		</RelativeLayout>
+		
+	    <RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_weight="1">
+		    
+		    <NumberPicker
+		        android:id="@+id/hitPicker"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true" />
+		    
+		    <TextView
+		        android:layout_below="@id/hitPicker"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+	            android:text="@string/hits"/>
+		    
+		</RelativeLayout>
+		
+	    <RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_weight="1">
+		    
+		    <NumberPicker
+		        android:id="@+id/kPicker"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true" />
+		    
+		    <TextView
+		        android:layout_below="@id/kPicker"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+	            android:text="@string/strikeouts"/>
+		  
+		</RelativeLayout>
+		
+	</LinearLayout>
+	
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+
+	    <RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_weight="1">
+		    
+		    <NumberPicker
+		        android:id="@+id/walksPicker"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"/>
+		    
+		    <TextView
+		        android:layout_below="@id/walksPicker"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+	            android:text="@string/walks"/>
+		    
+		</RelativeLayout>
+		
+	    <RelativeLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_weight="1">
+		    
+		    <NumberPicker
+		        android:id="@+id/errorsPicker"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true" />
+		    
+		    <TextView
+		        android:layout_below="@id/errorsPicker"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+		        android:layout_centerHorizontal="true"
+	            android:text="@string/errors"/>
+		    
+		</RelativeLayout>
+		
+	</LinearLayout>
+
+    <Button
+        android:id="@+id/save_inning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/save" />
+</LinearLayout>

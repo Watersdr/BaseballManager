@@ -1,0 +1,114 @@
+[
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_create_game.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_create_game.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_add_edit_player.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_add_edit_player.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\stat_view_pitching.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\stat_view_pitching.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_batting_defense_stats.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\fragment_batting_defense_stats.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_team_page.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_team_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_team_select.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_team_select.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\team_item.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\team_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_season_statistics.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_season_statistics.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_inning.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\dialog_inning.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_schedule.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_schedule.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\stat_view_batting_defense.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\stat_view_batting_defense.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_game_recap.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_game_recap.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_batting_stats.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\dialog_batting_stats.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\lineup_stats_item.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\lineup_stats_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_pitching_stats.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\dialog_pitching_stats.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\pitching_stats_item.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\pitching_stats_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_create_team.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_create_team.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_previous_games.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_previous_games.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_upcoming_games.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_upcoming_games.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_lineup.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\fragment_lineup.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_depth_chart.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\fragment_depth_chart.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_pitching_stats.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\fragment_pitching_stats.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\text_view.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\text_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\box_score_item.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\box_score_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\previous_game_item.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\previous_game_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\upcoming_game_item.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\upcoming_game_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_roster.xml",
+        "source": "C:\\Users\\DonnieWaters\\AndroidStudioProjects\\BaseballManager\\app\\src\\main\\res\\layout\\activity_roster.xml"
+    }
+]

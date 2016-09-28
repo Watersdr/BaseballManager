@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activities.ScheduleActivity" >
+
+    <item
+        android:id="@+id/add_game"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_new"
+        android:title="@string/add_game"/>
+
+</menu>

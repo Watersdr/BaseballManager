@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="22"
+    density="560dpi"
+    format="7"
+    timestamp="176652733198803"
+    token="-4548213577815837531" >
+
+    <task
+        name="javac"
+        duration="4431" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="772" />
+    <task
+        name="verifier"
+        duration="355" />
+
+    <artifact
+        location="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="176652733198803" >
+        <artifact
+            location="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

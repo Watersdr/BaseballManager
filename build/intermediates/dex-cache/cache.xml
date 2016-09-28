@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\jars\libs\internal_impl-21.0.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-21.0.0_eef2b09a0840078354b51696993e009a6c863363\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="b37ccccf1b87abfb36d80fe12ade856342d48c14">
+        <dex dex="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_0c4264b6b940403a79f1a5b456160f7d720cf30e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="0924356351bcaa861255877c64f6573fd3eabaca">
+        <dex dex="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_0d74f8481e93f24f554ed12e254943c957917fec\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-21.0.0_9ede35c383aff20afec85cd9e31d9d677cccb68e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\DonnieWaters\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.0\support-annotations-21.0.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
+        <dex dex="C:\Users\DonnieWaters\AndroidStudioProjects\BaseballManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-21.0.0_81d7ccad739a1e48197774e60a604eb2d1df1d8a\classes.dex" />
+    </item>
+
+</items>

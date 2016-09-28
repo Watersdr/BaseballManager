@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.rosehulman.baseballmanager"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="edu.rosehulman.baseballmanager.SplashScreen"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.TeamSelectActivity"
+            android:label="@string/title_activity_team_select" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.AddEditTeamActivity"
+            android:label="@string/title_activity_create_team" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.TeamPageActivity"
+            android:label="@string/title_activity_team_page" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.ScheduleActivity"
+            android:label="@string/title_activity_schedule" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.SeasonStatisticsActivity"
+            android:label="@string/title_activity_season_statistics" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.RosterActivity"
+            android:label="@string/title_activity_roster" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.AddEditPlayerActivity"
+            android:label="@string/title_activity_add_edit_player" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.EnterRecapActivity"
+            android:label="@string/title_activity_enter_recap" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.GameRecapActivity"
+            android:label="@string/title_activity_game_recap" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.LineupFragment"
+            android:label="@string/title_activity_lineup" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.DepthChartFragment"
+            android:label="@string/title_activity_depth_chart" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.UpcomingGamesFragment"
+            android:label="@string/title_activity_upcoming_games" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.PreviousGamesFragment"
+            android:label="@string/title_activity_previous_games" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.BattingDefenseStatsFragment"
+            android:label="@string/title_activity_batting_defense_stats" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.PitchingStatsFragment"
+            android:label="@string/title_activity_pitching_stats" >
+        </activity>
+        <activity
+            android:name="edu.rosehulman.baseballmanager.Activities.AddGameActivity"
+            android:label="@string/title_activity_add_game" >
+        </activity>
+    </application>
+
+</manifest>
